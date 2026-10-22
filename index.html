@@ -133,6 +133,13 @@ body::before{background:var(--hdr-bg)!important}
 @media (max-width:340px){.ki{grid-template-columns:1fr}}
 @media (max-width:860px){.portrait{margin:20px 0 56px 64px}}
 @media (max-width:560px){.ki-card{padding:16px 14px}.ki-card b{font-size:34px}.ki-card span{font-size:13px}}
+.sectors{margin-top:40px}
+.sec-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 28px;margin-top:12px;border-top:1px solid var(--line)}
+.sec{padding:14px 0 16px;border-bottom:1px solid var(--line)}
+.sec-n{font-family:var(--serif);font-size:20px;line-height:1.2;color:var(--ink)}
+.sec-i{font-size:14px;line-height:1.6;color:var(--ink-2);margin-top:4px}
+@media (max-width:900px){.sec-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.sec-grid{grid-template-columns:1fr}}
 .industries{margin-top:34px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .industries .eyebrow{margin-right:6px}
 .chip{font-size:14px;font-weight:400;color:var(--ink);white-space:nowrap}
@@ -806,7 +813,7 @@ dialog::backdrop{background:rgba(12,28,21,.55)}
       <div class="hero-main">
         <p class="eyebrow">Philadelphia, PA · 10+ years in analytics</p>
         <h1>From what happened to <i>what we do next.</i></h1>
-        <p class="lede">Measurement strategy, analytics architecture, and the operating discipline that keeps an analytics practice profitable. I use storytelling to turn data into decisions made with conviction.</p>
+        <p class="lede">Measurement strategy, analytics architecture, and the operating discipline that keeps an analytics function profitable. I use storytelling to turn data into decisions made with conviction.</p>
         <div class="cta">
           <a class="btn solid" href="https://www.linkedin.com/in/gabrodier" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>Connect on LinkedIn</a>
           <a class="btn" href="#contact">Get in touch</a>
@@ -818,10 +825,10 @@ dialog::backdrop{background:rgba(12,28,21,.55)}
           <p class="cred-h">Trusted by organizations around the world, including</p>
           <ul>
             <li>a public ad-tech company</li>
-            <li>a music-rights organization serving 1M+ creators</li>
-            <li>an entertainment studio whose debut made national news</li>
-            <li>a leading cause-driven political fundraising platform</li>
             <li>a renowned global philanthropic foundation focused on health advocacy</li>
+            <li>a music-rights organization serving 1M+ creators</li>
+            <li>a leading cause-driven political fundraising platform</li>
+            <li>an entertainment studio whose debut made national news</li>
             <li class="more-li">and many others</li>
           </ul>
         </div>
@@ -832,13 +839,13 @@ dialog::backdrop{background:rgba(12,28,21,.55)}
     <div class="ki">
       <div class="ki-card"><span class="ki-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 12h18"/></svg></span><b>$1.5M+</b><span>book of business serviced by me and my team</span></div>
       <div class="ki-card"><span class="ki-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span><b>$850K+</b><span>new, expanded, and renewed revenue I directly influenced in under two years</span></div>
-      <div class="ki-card"><span class="ki-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c0-1.1 1.1-2 2.5-2s2.5.9 2.5 2-1.1 1.7-2.5 2-2.5.9-2.5 2 1.1 2 2.5 2 2.5-.9 2.5-2"/></svg></span><b>+37%</b><span>revenue per payroll dollar after I rebuilt how the practice ran</span></div>
+      <div class="ki-card"><span class="ki-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c0-1.1 1.1-2 2.5-2s2.5.9 2.5 2-1.1 1.7-2.5 2-2.5.9-2.5 2 1.1 2 2.5 2 2.5-.9 2.5-2"/></svg></span><b>+37%</b><span>revenue per payroll dollar after I rebuilt how the department ran</span></div>
       <div class="ki-card"><span class="ki-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-9"/><path d="M12 12c0-4 3-6 7-6 0 4-3 6-7 6zM12 15c0-3-2.5-5-6-5 0 3 2.5 5 6 5z"/></svg></span><b>100%</b><span>of my direct reports promoted over three years</span></div>
     </div>
 
-    <div class="industries" aria-label="Industries served">
-      <span class="eyebrow">Industries served</span>
-      <span class="chip">Ad tech</span><span class="chip">International + national nonprofits</span><span class="chip">Music + entertainment</span><span class="chip">Life sciences</span><span class="chip">Higher education</span><span class="chip">Law</span><span class="chip">B2B + D2C eCommerce</span><span class="chip">Local government</span><span class="chip">National food chains</span><span class="chip">Politics + campaigns</span><span class="chip">Insurance + finance</span><span class="chip">Publishing</span><span class="chip">Manufacturing + construction</span><span class="chip">Healthcare</span><span class="chip">Technology</span>
+    <div class="sectors" aria-labelledby="sec-h">
+      <p class="eyebrow" id="sec-h">Sectors + industries served</p>
+      <div class="sec-grid"><div class="sec"><p class="sec-n">Media + entertainment</p><p class="sec-i">Music<span class="kd" aria-hidden="true"> · </span>entertainment studios<span class="kd" aria-hidden="true"> · </span>ad tech<span class="kd" aria-hidden="true"> · </span>publishing</p></div><div class="sec"><p class="sec-n">Public sector + mission-driven</p><p class="sec-i">International + national nonprofits<span class="kd" aria-hidden="true"> · </span>higher education<span class="kd" aria-hidden="true"> · </span>philanthropy + foundations<span class="kd" aria-hidden="true"> · </span>politics + campaigns<span class="kd" aria-hidden="true"> · </span>local government</p></div><div class="sec"><p class="sec-n">Commerce + technology</p><p class="sec-i">B2B + D2C eCommerce<span class="kd" aria-hidden="true"> · </span>technology</p></div><div class="sec"><p class="sec-n">Health + science</p><p class="sec-i">Healthcare<span class="kd" aria-hidden="true"> · </span>life sciences</p></div><div class="sec"><p class="sec-n">Consumer + industrial</p><p class="sec-i">Retail + home goods<span class="kd" aria-hidden="true"> · </span>manufacturing + construction<span class="kd" aria-hidden="true"> · </span>hospitality + travel<span class="kd" aria-hidden="true"> · </span>national food chains</p></div><div class="sec"><p class="sec-n">Professional + financial services</p><p class="sec-i">Insurance + finance<span class="kd" aria-hidden="true"> · </span>law<span class="kd" aria-hidden="true"> · </span>real estate</p></div></div>
     </div>
   </div>
 </section>
@@ -942,7 +949,7 @@ dialog::backdrop{background:rgba(12,28,21,.55)}
     <div class="kpi-row">
       <div class="panel">
         <div class="panel-head">
-          <span>Where each practice KPI moved against its target, year over year</span>
+          <span>Where each department KPI moved against its target, year over year</span>
           <span class="legend"><span><i class="lg-before"></i>Year 1</span><span><i class="lg-after"></i>Year 2</span><span><i class="lg-tgt"></i>target</span></span>
         </div>
         <div class="db-name">Average billed rate <em>missed → beat</em></div>
@@ -969,8 +976,8 @@ dialog::backdrop{background:rgba(12,28,21,.55)}
       </button>
       <button class="case" data-open="cs-turnaround" type="button">
         <span class="tag">Org management</span>
-        <h3>Practice turnaround and growth</h3>
-        <p>Taking an analytics practice from missing its KPIs most months to beating them, despite more conservative budgets driven by an uncertain economy and a decrease in team resources.</p>
+        <h3>Department turnaround and growth</h3>
+        <p>Taking an analytics service from missing its KPIs most months to beating them, despite more conservative budgets driven by an uncertain economy and a decrease in team resources.</p>
         <span class="more">Read the case →</span>
       </button>
       <button class="case" data-open="cs-standards" type="button">
@@ -981,7 +988,7 @@ dialog::backdrop{background:rgba(12,28,21,.55)}
       </button>
     </div>
 
-    <a class="samples-link" href="#samples">See operations deliverable examples <span aria-hidden="true">→</span><small>A quarterly practice review for agency leadership, plus the full set of anonymized samples</small></a>
+    <a class="samples-link" href="#samples">See operations deliverable examples <span aria-hidden="true">→</span><small>A quarterly department review for agency leadership, plus the full set of anonymized samples</small></a>
 
     <div class="tool collapsed" id="estimator">
       <div class="tool-head">
@@ -1067,7 +1074,7 @@ dialog::backdrop{background:rgba(12,28,21,.55)}
         <p class="sec-num">About</p>
         <h2>Agency-trained, operator-minded</h2>
       </div>
-      <p class="lede">I started as an intern and grew into leading an analytics practice end to end: strategy, implementation, team, and P&amp;L. Along the way I've worked with public companies, confidential and stealth enterprises, global nonprofits, healthcare entities, and nearly everything in between.</p>
+      <p class="lede">I started as an intern and grew into leading an analytics function end to end: strategy, implementation, team, and P&amp;L. Along the way I've worked with public companies, confidential and stealth enterprises, global nonprofits, healthcare entities, and nearly everything in between.</p>
       <svg class="art" viewBox="0 0 220 130" role="img" aria-label="Illustration: a still life of books with a plant, an eagle head, a coffee mug, a paw print, and a puzzle piece">
 <rect x="12" y="108" width="196" height="6" rx="3" fill="var(--soil)"/><rect x="28" y="92" width="70" height="16" rx="2" fill="var(--accent-ink)"/><rect x="34" y="78" width="62" height="14" rx="2" fill="var(--rose)"/><rect x="30" y="64" width="66" height="14" rx="2" fill="var(--p3)"/><path d="M58 64 C54 52 62 44 58 34" stroke="var(--accent)" stroke-width="2.5" fill="none"/><ellipse cx="52" cy="48" rx="7" ry="3" fill="var(--p3)" transform="rotate(-30 52 48)"/><ellipse cx="64" cy="40" rx="7" ry="3" fill="var(--p3)" transform="rotate(30 64 40)"/><rect x="112" y="78" width="30" height="30" rx="4" fill="var(--rose-2)" stroke="var(--rose-ink)" stroke-width="2"/><path d="M142 86 C152 86 152 100 142 100" fill="none" stroke="var(--rose-ink)" stroke-width="2"/><path d="M160 88 h10 a5 5 0 1 1 8 0 h10 v20 h-28 z" fill="var(--p2)"/>
 <g transform="translate(107 28) scale(.72)" fill="none" stroke="var(--accent-ink)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M8 24 C12 14 22 8 32 8 C40 8 46 10 50 13 C56 15 60 20 59 27 C58 31 55 33 53 30 C54 27 52 25 48 25 L40 26 C36 27 34 30 33 34 L30 46 L25 40 L23 52 L18 43 L14 54 L12 42 L6 48 L8 34 Z"/><path d="M37 14.5 L46 16.5"/><path d="M41 21.5 L51 21"/></g>
@@ -1098,7 +1105,7 @@ dialog::backdrop{background:rgba(12,28,21,.55)}
       <div class="kit kit-3">
           <div><p class="kit-h">Leadership + strategy</p><p class="kit-in"><span>Analytics function design and operating models</span><span class="kd" aria-hidden="true"> · </span><span>Team leadership and mentorship</span><span class="kd" aria-hidden="true"> · </span><span>Hiring and development</span><span class="kd" aria-hidden="true"> · </span><span>Executive and client advisory</span><span class="kd" aria-hidden="true"> · </span><span>Business development and cross-sell</span><span class="kd" aria-hidden="true"> · </span><span>Roadmapping and goal setting</span><span class="kd" aria-hidden="true"> · </span><span>Operations optimization</span></p></div>
           <div><p class="kit-h">Analytics + UX</p><p class="kit-in"><span>Measurement strategy</span><span class="kd" aria-hidden="true"> · </span><span>Digital analytics maturity</span><span class="kd" aria-hidden="true"> · </span><span>Multivariate and personalization testing</span><span class="kd" aria-hidden="true"> · </span><span>Cross-domain tracking</span><span class="kd" aria-hidden="true"> · </span><span>Data audits</span><span class="kd" aria-hidden="true"> · </span><span>Data governance and consent</span><span class="kd" aria-hidden="true"> · </span><span>Dashboarding and reporting</span><span class="kd" aria-hidden="true"> · </span><span>Benchmarking and goals</span><span class="kd" aria-hidden="true"> · </span><span>Focused actionable analysis</span></p></div>
-          <div><p class="kit-h">Tools + technology</p><dl class="kit-tools"><dt>Analytics + behavior</dt><dd><span>Google Analytics (360 + GA4)</span><span class="kd" aria-hidden="true"> · </span><span>Adobe Analytics</span><span class="kd" aria-hidden="true"> · </span><span>Hotjar</span><span class="kd" aria-hidden="true"> · </span><span>Microsoft Clarity</span></dd><dt>Tag management</dt><dd><span>Google Tag Manager (360)</span><span class="kd" aria-hidden="true"> · </span><span>Adobe Launch</span></dd><dt>Data + BI</dt><dd><span>BigQuery (SQL)</span><span class="kd" aria-hidden="true"> · </span><span>Looker Studio</span><span class="kd" aria-hidden="true"> · </span><span>Tableau</span><span class="kd" aria-hidden="true"> · </span><span>Google Marketing Platform</span></dd><dt>Consent</dt><dd><span>OneTrust</span><span class="kd" aria-hidden="true"> · </span><span>Usercentrics</span></dd><dt>Workflow + AI</dt><dd><span>Jira</span><span class="kd" aria-hidden="true"> · </span><span>Confluence</span><span class="kd" aria-hidden="true"> · </span><span>Claude</span><span class="kd" aria-hidden="true"> · </span><span>Gemini</span></dd></dl></div>
+          <div><p class="kit-h">Tools + technology</p><dl class="kit-tools"><dt>Analytics</dt><dd><span>Google Analytics (360 + GA4)</span><span class="kd" aria-hidden="true"> · </span><span>Adobe Analytics</span><span class="kd" aria-hidden="true"> · </span><span>Adobe Customer Journey Analytics (CJA)</span></dd><dt>Tag management</dt><dd><span>Google Tag Manager (360)</span><span class="kd" aria-hidden="true"> · </span><span>Adobe Tags</span></dd><dt>Data + BI</dt><dd><span>BigQuery (SQL)</span><span class="kd" aria-hidden="true"> · </span><span>Looker Studio</span><span class="kd" aria-hidden="true"> · </span><span>Google Marketing Platform</span><span class="kd" aria-hidden="true"> · </span><span>Tableau</span></dd><dt>Consent</dt><dd><span>OneTrust</span><span class="kd" aria-hidden="true"> · </span><span>Usercentrics</span></dd><dt>Testing + behavior</dt><dd><span>Adobe Target</span><span class="kd" aria-hidden="true"> · </span><span>Hotjar</span><span class="kd" aria-hidden="true"> · </span><span>Microsoft Clarity</span></dd><dt>Workflow + AI</dt><dd><span>Jira</span><span class="kd" aria-hidden="true"> · </span><span>Confluence</span><span class="kd" aria-hidden="true"> · </span><span>Claude</span><span class="kd" aria-hidden="true"> · </span><span>Gemini</span></dd></dl></div>
         </div>
     </div>
   </div>
@@ -1158,8 +1165,8 @@ dialog::backdrop{background:rgba(12,28,21,.55)}
         </button>
         <button class="case sample wide-s" data-open="ws-ops" type="button">
           <span class="tag">Operations</span>
-          <h3>Quarterly practice review</h3>
-          <p>How I report a practice to agency leadership: KPIs against target, progress since last quarter, and owned next steps.</p>
+          <h3>Quarterly department review</h3>
+          <p>How I report a department to agency leadership: KPIs against target, progress since last quarter, and owned next steps.</p>
           <span class="more">View the excerpt →</span>
         </button>
       </div>
@@ -1300,10 +1307,10 @@ dialog::backdrop{background:rgba(12,28,21,.55)}
 <dialog id="cs-turnaround" aria-labelledby="h-turn"><div class="dlg-in">
   <button class="dlg-close" type="button" data-close>Close</button>
   <p class="eyebrow">Org management</p>
-  <h3 id="h-turn">Practice turnaround and growth</h3>
-  <p class="client">An analytics practice inside a digital marketing and development agency.</p>
+  <h3 id="h-turn">Department turnaround and growth</h3>
+  <p class="client">An analytics service inside a digital marketing and development agency.</p>
   <dl class="cs">
-    <dt>Starting point</dt><dd>When I joined late in the year, the practice was missing its rate, utilization, and payroll-to-revenue targets, and team leadership had been inconsistent.</dd>
+    <dt>Starting point</dt><dd>When I joined late in the year, the department was missing its rate, utilization, and payroll-to-revenue targets, and team leadership had been inconsistent.</dd>
     <dt>What I did</dt><dd><ul>
       <li>Fixed time tracking and planning so the work we did matched the work we billed.</li>
       <li>Cross-trained the team on both strategic and technical work so nobody sat idle waiting on one kind of task.</li>
@@ -1311,7 +1318,7 @@ dialog::backdrop{background:rgba(12,28,21,.55)}
       <li>Absorbed operational responsibilities: joined the leadership ops team, supported monthly billing, delivered quarterly business reviews to the partners, and kept the marketing department's managers aligned.</li>
       <li>Ran quarterly KPI reviews by client to catch accounts we were over- or under-serving.</li>
     </ul></dd>
-    <dt>Outcome</dt><dd>All three practice KPIs moved from missing to beating target. Revenue per payroll dollar rose 37%, the average billed rate rose 24%, and the team grew account relationships, including a major renewal and expansion and increased retainers with two large clients.</dd>
+    <dt>Outcome</dt><dd>All three department KPIs moved from missing to beating target. Revenue per payroll dollar rose 37%, the average billed rate rose 24%, and the team grew account relationships, including a major renewal and expansion and increased retainers with two large clients.</dd>
   </dl>
 </div></dialog>
 
@@ -1564,22 +1571,22 @@ window.dataLayer.push({
 </div></dialog>
 <dialog id="ws-ops" class="wide ws-dlg" aria-labelledby="h-ws4"><div class="dlg-in">
   <div class="ws-head"><div class="ws-head-t">
-  <p class="eyebrow">Work sample · quarterly practice review</p>
-  <h3 id="h-ws4" class="sr-only">Quarterly practice alignment excerpt</h3>
+  <p class="eyebrow">Work sample · quarterly department review</p>
+  <h3 id="h-ws4" class="sr-only">Quarterly department alignment excerpt</h3>
   </div><button class="dlg-close" type="button" data-close>Close</button></div>
-  <div class="deck" aria-roledescription="carousel" aria-label="Quarterly practice review slides">
+  <div class="deck" aria-roledescription="carousel" aria-label="Quarterly department review slides">
     <div class="deck-stage">
       <section class="slide on" aria-roledescription="slide" aria-label="Slide 1 of 4">
       <div class="sl sl-cover">
       <span class="cv-tri" aria-hidden="true"></span>
       <div class="cv-main">
-        <p class="cv-k">Analytics practice</p>
+        <p class="cv-k">Analytics department</p>
         <p class="cv-t">Quarterly Alignment</p>
         <p class="cv-s">Q2 review · Prepared for agency leadership</p>
         <p class="cv-note">Illustrative recreation. Figures are shown relative to target; names and details are removed.</p>
       </div>
       <div class="cv-art" aria-hidden="true"><svg class="sl-mark" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 54 V24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/><ellipse cx="22" cy="30" rx="10" ry="4.5" transform="rotate(-30 22 30)" fill="currentColor"/><ellipse cx="38" cy="22" rx="10" ry="4.5" transform="rotate(30 38 22)" fill="currentColor"/><circle cx="30" cy="12" r="4" fill="var(--rose)"/></svg></div>
-      <div class="sl-foot"><span>Analytics practice · Quarterly alignment</span><span>1</span></div>
+      <div class="sl-foot"><span>Analytics department · Quarterly alignment</span><span>1</span></div>
     </div>
       </section>
       <section class="slide" aria-roledescription="slide" aria-label="Slide 2 of 4" aria-hidden="true">
@@ -1587,7 +1594,7 @@ window.dataLayer.push({
       <div class="sl-body">
         <div class="ok-grid"><div class="ok-card"><div class="ok-h"><p>Average billable rate</p><span class="st ok">Above target</span></div><div class="ok-bars"><div class="okb"><i style="height:78%"></i><span>Apr</span></div><div class="okb"><i style="height:82%"></i><span>May</span></div><div class="okb"><i style="height:80%"></i><span>Jun</span></div><i class="ok-tgt" aria-hidden="true"></i></div><p class="ok-n">Held above target every month; two client outliers flagged for scope review.</p></div><div class="ok-card"><div class="ok-h"><p>Labor cost as % of revenue</p><span class="st ok">Under ceiling</span></div><div class="ok-bars"><div class="okb"><i style="height:52%"></i><span>Apr</span></div><div class="okb"><i style="height:50%"></i><span>May</span></div><div class="okb"><i style="height:64%"></i><span>Jun</span></div><i class="ok-tgt" aria-hidden="true"></i></div><p class="ok-n">Stayed under the ceiling for the quarter overall, with no outsourcing spend.</p></div><div class="ok-card"><div class="ok-h"><p>Team utilization</p><span class="st ok">Above target</span></div><div class="ok-bars"><div class="okb"><i style="height:80%"></i><span>Apr</span></div><div class="okb"><i style="height:84%"></i><span>May</span></div><div class="okb"><i style="height:77%"></i><span>Jun</span></div><i class="ok-tgt" aria-hidden="true"></i></div><p class="ok-n">Highest quarterly average in 18 months; capacity holds at current headcount.</p></div></div>
         <p class="ok-leg"><span class="ok-k1"></span>Monthly result <span class="ok-k2"></span>Target (a ceiling for labor cost, where lower is better)</p>
-      </div><div class="sl-foot"><span>Analytics practice · Quarterly alignment</span><span>2</span></div>
+      </div><div class="sl-foot"><span>Analytics department · Quarterly alignment</span><span>2</span></div>
     </div>
       </section>
       <section class="slide" aria-roledescription="slide" aria-label="Slide 3 of 4" aria-hidden="true">
@@ -1600,7 +1607,7 @@ window.dataLayer.push({
           <tr><td>Expand team trainings and workshops</td><td><span class="st">In progress</span></td><td>Webinar series scoped</td></tr>
           <tr><td>Build a short capabilities overview</td><td><span class="st muted">Not started</span></td><td>Moved to next quarter</td></tr>
         </tbody></table>
-      </div><div class="sl-foot"><span>Analytics practice · Quarterly alignment</span><span>3</span></div>
+      </div><div class="sl-foot"><span>Analytics department · Quarterly alignment</span><span>3</span></div>
     </div>
       </section>
       <section class="slide" aria-roledescription="slide" aria-label="Slide 4 of 4" aria-hidden="true">
@@ -1613,7 +1620,7 @@ window.dataLayer.push({
           <tr><td>Finish the deliverable template library</td><td>Analytics lead</td><td>Medium / Medium</td><td><span class="st">In progress</span></td></tr>
           <tr><td>Review team engagement proposals</td><td>Leadership</td><td>Low / Low</td><td><span class="st muted">Up next</span></td></tr>
         </tbody></table>
-      </div><div class="sl-foot"><span>Analytics practice · Quarterly alignment</span><span>4</span></div>
+      </div><div class="sl-foot"><span>Analytics department · Quarterly alignment</span><span>4</span></div>
     </div>
       </section>
     </div>
