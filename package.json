@@ -1,0 +1,17 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "description": "Dev tooling only (screenshots, diffs). The site itself has no build step.",
+  "scripts": {
+    "serve": "node tests/serve.mjs 4173",
+    "shots": "node tests/shots.mjs",
+    "diff": "node tests/diff.mjs",
+    "styles": "node tests/styles.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "pixelmatch": "^8.0.0",
+    "pngjs": "^7.0.0",
+    "postcss": "^8.5.33"
+  }
+}
