@@ -78,7 +78,7 @@ add('work sample open/close', 'work-samples/', async p => { await p.click('[data
 add('try the self-assessment CTA', '', async p => { await p.click('[data-open="cs-maturity"]'); await wait(300); await p.click('#cs-maturity a[href="#assess"]'); await wait(300); });
 add('maturity tool', '', async p => {
   await p.click('#assess .tool-toggle'); await wait(300);
-  await p.click('#assess .cs-btn >> nth=1'); await p.click('#assess .cs-list:not([hidden]) li >> nth=1');
+  await p.click('#assess .cs-btn >> nth=1'); await p.click('#assess .cs-list:not([hidden]) li >> nth=3');
   await p.click('#quiz-go'); await wait(200);
   await p.click('#assess .tool-toggle');
 });
@@ -122,6 +122,18 @@ add('deck arrows + dots + keys', 'work-samples/', async p => {
 
 // ---------- filters ----------
 add('skills chips', 'skills-tools/', async p => { await p.click('[data-fa="ana"]'); await p.click('[data-fl="8"]'); await wait(100); });
+add('re-click same choices (no pushes)', 'skills-tools/', async p => { await p.click('[data-fl="8"]'); await p.click('[data-fl="8"]'); await p.click('[data-fl="8"]'); await p.click('[data-fa="all"]'); await wait(100); });
+add('re-pick same dropdown/chip (no pushes)', '', async p => {
+  await p.click('#assess .tool-toggle'); await wait(300);
+  await p.click('#assess .cs-btn >> nth=0'); await p.click('#assess .cs-list:not([hidden]) li >> nth=1'); // already selected
+  await p.click('#estimator .tool-toggle'); await wait(300);
+  await p.click('#estimator .seg-ctl[data-f="cx"] button >> nth=1'); // already pressed
+  await p.click('#assess .cs-btn >> nth=0'); await p.click('#assess .cs-list:not([hidden]) li >> nth=2'); // real change
+});
+add('dashboard same option (no push)', 'work-samples/', async p => {
+  await p.click('[data-open="ws-dash"]'); await wait(300);
+  await p.click('#ws-dash .dash-range .cs-btn >> nth=0'); await p.click('#ws-dash .cs-list:not([hidden]) li >> nth=0');
+});
 add('skills search', 'skills-tools/', async p => { await p.click('[data-fl="8"]'); await p.fill('#hb-q', 'platf'); await wait(500); await p.fill('#hb-q', 'platform'); await wait(2300); });
 add('skills search PII', 'skills-tools/', async p => {
   await p.fill('#hb-q', 'jane@example.com'); await wait(2300);

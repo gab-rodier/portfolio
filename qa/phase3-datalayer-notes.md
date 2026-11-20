@@ -21,6 +21,7 @@ Branch `feat/datalayer-tracking` (2026-11-20). All tracking lives in `assets/tra
   - "Reset to Sample", "Clear All" and Skills "Reset filters" replay clicks on other controls. Only the button you pressed is counted.
   - A click in the Cycle step list replays a click on the ring. It's counted once.
   - Arrow keys that call a button's click are counted as `arrow key`, not as an arrow click.
+- **No-change clicks don't count.** Re-clicking a filter, choice chip, or dropdown option that is already selected sends nothing, e.g. clicking "Expert" again. This covers Skills Area/Level, the Scoping multi-choice buttons, the Maturity dropdowns, and the dashboard Hostname/Date range.
 - **info_hover.**
   - Fires after 1.5 seconds on the info icon (its popup is part of the same target) or on a Skills row.
   - Keyboard focus held for 1.5 seconds counts the same way.

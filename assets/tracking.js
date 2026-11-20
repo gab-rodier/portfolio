@@ -382,6 +382,7 @@
   }
 
   /* ---------- clicks (capture phase, so "before" state is still readable) ---------- */
+  var picked = new WeakMap(); // native <select> -> selectedIndex before a custom-dropdown pick
   var pointerType = null;
   d.addEventListener('pointerdown', function (e) { pointerType = e.pointerType; }, true);
   d.addEventListener('keydown', function () { pointerType = null; }, true);
@@ -390,6 +391,14 @@
     var t = e.target;
     if (!(t instanceof Element) || bulk) return;
     var el;
+
+    // Custom dropdown option: remember the choice it replaces, so picking the option that is
+    // already selected doesn't count as a change (see the change listener).
+    if ((el = t.closest('.csel .cs-list li'))) {
+      var native = el.closest('.csel').querySelector('select');
+      if (native) picked.set(native, native.selectedIndex);
+      return;
+    }
 
     // Links (nav, footer, CTAs, downloads, email, external, case/sample openers)
     if ((el = t.closest('a[href]'))) return onLink(el);
@@ -439,6 +448,7 @@
       return startBulk();
     }
     if ((el = t.closest('#estimator .seg-ctl button'))) {
+      if (el.getAttribute('aria-pressed') === 'true') return; // already selected: nothing changes
       var seg = el.closest('.seg-ctl'), prev = seg.previousElementSibling;
       return toolPush('multi-choice button selection', 'estimator', prev ? prev.textContent.trim() : undefined, label(el));
     }
@@ -484,6 +494,7 @@
 
     // Skills filters
     if ((el = t.closest('#skills [data-fa], #skills [data-fl]'))) {
+      if (el.getAttribute('aria-pressed') === 'true') return; // already selected: nothing changes
       var name = el.hasAttribute('data-fa') ? 'Area' : 'Level', text = label(el);
       return after(e, function () { skillsPush(name, 'selectable option', text, skillsState()); });
     }
@@ -560,6 +571,12 @@
   d.addEventListener('change', function (e) {
     var t = e.target;
     if (!(t instanceof Element) || bulk) return;
+    // Re-picking the option that was already selected changes nothing.
+    if (t.tagName === 'SELECT' && picked.has(t)) {
+      var was = picked.get(t);
+      picked.delete(t);
+      if (was === t.selectedIndex) return;
+    }
     if (t.matches('#quiz-qs select')) {
       var l = d.querySelector('label[for="' + t.id + '"]');
       return toolPush('dropdown selection', 'assess', l ? l.textContent.split(':')[0].trim() : undefined, 'level ' + (t.selectedIndex + 1));
