@@ -1726,3 +1726,5 @@ body{font-family:var(--font)}
 .hb-reset{border:0;background:none;padding:4px 0;font:500 14px/1.2 var(--font);color:var(--rose-deep);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .hb-reset:hover{color:var(--forest)}
 .hb-reset:focus-visible{outline:2px solid var(--forest);outline-offset:3px;border-radius:4px}
+
+.f-priv{flex-basis:100%;font-size:13px;opacity:.85}@media (max-width:700px){.f-bot{padding-bottom:72px}}

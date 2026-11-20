@@ -1,0 +1,39 @@
+Parameter Name,When Event Should Fire,,Parameter Count:,27,Event-based CDim Slots Left:,23
+action,"type of slider interaction, e.g. ""shift arrow click"" / ""shift bar click""",,,,,
+click_direction,"direction of the interaction when the slider is shifted, e.g. ""forward"" / ""backward""",,,,,
+click_domain ,destination hostname of the clicked element,,,,,
+click_text,text of the clicked element,,,,,
+click_url ,URL of the clicked element or downloaded file,,,,,
+element_id ,"form ID, e.g. ""my-form""",,,,,
+element_location,"name of where element/link lives, e.g. ""footer"" / ""contact page"" / ""maturity tool"" / ""scoping tool"" / ""The Cycle of UX Data"" / ""Toolkit Highlights"" / ""review feedback quotes"" / ""Quarterly Department Review work sample"" / ""Skills + Tools"" / ""AI - Hours Saved"" / ""Skills + Tools - Leadership + Operations""; 
+or name of the nav type, e.g. ""static""/ ""hamburger""; 
+or name of the footer section, e.g. ""Get in Touch"" / ""Explore"" / ""logo""",,,,,
+element_name,"form name, e.g. ""contact form""; 
+or name of aligning interaction item, e.g. ""Data collection"" / ""Strategy"" / ""Ecommerce""; 
+or name of modal, e.g. ""Department Turnaround and Growth Case Study"" / ""Executive Dashboard Work Sample"" / ""Maturity Framework Tool""; 
+or filter name, e.g. ""Area"" / ""Search Term"" / ""Hostname""; 
+or name of element tied to hover, e.g. ""5h Tracking Document Scaffolding"" / ""Opportunity Identification""",,,,,
+element_type,"type of element, e.g. ""link"" / ""button"" / ""icon""; 
+or type of interaction, e.g. ""dropdown selection"" / ""submit for result"" / ""checkbox selection"" / ""selections wide-span update"" / ""multi-choice button selection"" / ""selectable option"" / ""search bar""; 
+or category of modal, e.g. ""Case Study"" / ""Work Sample"" / ""Tool""; 
+or type of info hover value, e.g. ""Reinvested Into"" / ""Basic Level"" / ""Level With Note""",,,,,
+file_extension,"e.g. ""PDF""",,,,,
+file_name,"e.g. ""Gabrielle-Rodier-Resume""",,,,,
+filter_selection,"selected filter option, e.g. ""Digital Marketing"" / ""Expert"" / ""docs.larkspurlabs.com"" / ""Last 26 weeks""; 
+or the entered search term for search filters, w/ ""*Omitted!* user PII suspected"" used for any search term value that looks like user PII",,,,,
+form_selection,"selected dropdown reason when applicable, e.g. ""Reason: Just Saying Hi""",,,,,
+from_state,"slide number that a user is on when clicking to slide elsewhere, e.g. ""1-2"" / ""1""",,,,,
+internal_traffic,"boolean true / false based on internal= URL param, set as ""true"" when a page has ""?internal=1"" or ""&internal=1"" in the URL and have this persist through the DL indefinitely with value remembered on the browser until there's a visit with ?internal=0, set as ""false"" otherwise, to use for identifying when I'm reviewing my portfolio page to be able to filter out accordingly",,,,,
+page_percentage,"scroll depth reached or % of page depth where scroll-to-top was clicked, e.g. ""25"" / ""50"" / ""75"" / ""90"" / ""100",,,,,
+page_section_path,"section of page if applicable, e.g. ""#analytics"" / ""#ai"" / ""#operations"" / ""#leadership"" / ""#about""",,,,,
+page_section_title,"title of section of page if applicable, e.g. ""analytics"" / ""ai"" / ""operations"" / ""leadership"" / ""about""",,,,,
+page_title,"title of the page, e.g. ""Contact"" / ""Homepage"" / ""Work Samples"" / ""Skills + Tools""",,,,,
+page_type,"type of page on the site, e.g. ""home"" / ""skills + tools"" / ""contact"" / ""work samples""",,,,,
+page_url,"full URL of the page, e.g. ""https://gab-rodier.github.io/portfolio/work-samples/"" / ""https://gab-rodier.github.io/portfolio/""",,,,,
+query_parameter,query string of the page URL if applicable,,,,,
+results_count,"number of results in the list after the filter is applied if applicable, e.g. ""1""",,,,,
+search_filter_applied,"search term of enabled search filter if one is applied in addition to the current filter selection, e.g. ""platform""",,,,,
+secondary_filter_applied,"name and selection of enabled filter option if there's another filter applied in addition to the current filter selection, e.g. ""Level: Expert"" / ""Hostname: docs.larkspurlabs.com""",,,,,
+to_state,"slide number that a user is clicking to, e.g. ""2-3"" / ""2""",,,,,
+total_options,"number of total slides that exist in the slider, e.g. ""4"" / ""8"";
+or number of possible results in total when filters are not applied if applicable, e.g. ""107""",,,,,

@@ -1,0 +1,287 @@
+Event,When Event Should Fire,Example on Site,GA4 Event Name,Associated Parameters,"Dev Requirements (DL Specs)
+//*When a parameter has no value, set it to undefined. Do not send null, an empty string, or text like ""n/a"", since GA4 stores those as real values. Setting undefined (instead of leaving the key out) also clears any value GTM is still holding from an earlier push."
+Primary Measurement,,,,,
+"Pageview
+//DL name = 'initialize_dataLayer//",This event will fire on page load of all pages and capture key page information. ,ALL PAGES,page_view,"page_url (full URL of the page, e.g. ""https://gab-rodier.github.io/portfolio/work-samples/"", ""https://gab-rodier.github.io/portfolio/"")
+page_title (title of the page, e.g. ""Contact"", ""Homepage"", ""Work Samples"", ""Skills + Tools"")
+query_parameter (query string of the page URL if applicable)
+page_type (type of page on the site, e.g. ""home"", ""skills + tools"", ""contact"", ""work samples"")
+page_section_path (section of page if applicable, e.g. ""#analytics"", ""#ai"", ""#operations"", ""#leadership"", ""#about"")
+page_section_title (title of section of page if applicable, e.g. ""analytics"", ""ai"", ""operations"", ""leadership"", ""about"")
+internal_traffic (set as ""true"" when a page has ""?internal=1"" or ""&internal=1"" in the URL and have this persist through the DL indefinitely with value remembered on the browser until there's a visit with ?internal=0, set as ""false"" otherwise) ","*// This event will fire on page load of all pages. //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'initialize_dataLayer',
+    page_url: <full URL of the page, including hash-appendages if clicked to section directly>, //string, e.g. ""https://gab-rodier.github.io/portfolio/contact/"", ""https://gab-rodier.github.io/portfolio/#ai""
+    page_title: <title of the page>, //string
+    query_parameter: <query string of the page URL>, //string, undefined if none
+    page_type: <type of page on the site>, //string, e.g. ""home"", ""skills + tools"", ""contact"", ""work samples""
+    page_section_path: <name of page section if applicable>, //string, e.g. ""#analytics"", ""#ai"", ""#operations"", ""#leadership"", ""#about"", undefined if none
+    page_section_title: <title of page section if applicable>, //string, e.g. ""analytics"", ""ai"", ""operations"", ""leadership"", ""about"", undefined if none
+    internal_traffic: <true / false based on internal= URL param> //string, set as ""true"" when a page has ""?internal=1"" or ""&internal=1"" in the URL and have this persist through the DL indefinitely with value remembered on the browser until there's a visit with ?internal=0, set as ""false"" otherwise
+});"
+Section View,"This event will fire on section load of all sections on the homepage (e.g. '#analytics' / '#ai' / '#operations' / '#leadership' / '#about', even when a user is just scrolling there and not clicking to there from a nav link) and capture key page information. ",https://gab-rodier.github.io/portfolio/,section_view,"page_url (full URL of the page, e.g. ""https://gab-rodier.github.io/portfolio/"")
+page_title (title of the page, e.g. ""Homepage"")
+query_parameter (query string of the page URL if applicable)
+page_type (type of page on the site, e.g. ""home"")
+page_section_path (section of page, e.g. ""#analytics"", ""#ai"", ""#operations"", ""#leadership"", ""#about"")
+page_section_title (title of section of page, e.g. ""analytics"", ""ai"", ""operations"", ""leadership"", ""about"")","*// This event will fire on section load of all sections on the homepage (e.g. '#analytics' / '#ai' / '#operations' / '#leadership' / '#about', even when a user is just scrolling there and not clicking to there from a nav link). //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'section_view',
+    page_url: <full URL of the page, including hash-appendages if clicked to section directly>, //string, e.g. ""https://gab-rodier.github.io/portfolio/"", ""https://gab-rodier.github.io/portfolio/#ai""
+    page_title: <title of the page>, //string, e.g. ""Homepage""
+    query_parameter: <query string of the page URL>, //string, undefined if none
+    page_type: <type of page on the site>, //string, e.g. ""home""
+    page_section_path: <name of page section>, //string, e.g. ""#analytics"", ""#ai"", ""#operations"", ""#leadership"", ""#about""
+    page_section_title: <title of page section> //string, e.g. ""analytics"", ""ai"", ""operations"", ""leadership"", ""about""
+});"
+Scroll,"This event will fire the first time a user reaches 25%, 50%, 75%, 90% and 100% scrolled on any page.",ALL PAGES,scroll,"page_percentage (scroll depth reached, e.g. ""25"", ""50"", ""75"", ""90"", ""100"")","*// This event will fire the first time a user reaches 25%, 50%, 75%, 90% and 100% scrolled on any page. Note that the homepage should be treated as one single page and sections should not be treated uniquely here. //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'scroll',
+    page_percentage: <scroll depth reached> //number, e.g. ""25"", ""50"", ""75"", ""90"", ""100""
+});"
+External Link Click,This event will fire each time a user clicks a link that leads away from the current domain.,Clicks to LinkedIn,external_link_click,"click_text (text of the clicked element, e.g. ""Connect on LinkedIn"")
+click_url (destination URL, e.g. ""www.linkedin.com/in/gabrodier"")
+click_domain (destination hostname, e.g. ""linkedin.com"")","*// This event will fire each time a user clicks a link that leads away from the current domain. //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'external_link_click',
+    click_text: <text of the clicked element>, //string, e.g. ""Connect on LinkedIn""
+    click_url: <destination URL>, //string, e.g. ""www.linkedin.com/in/gabrodier""
+    click_domain: <destination hostname> //string, e.g. ""linkedin.com""
+});"
+Form View,This event will fire when a form comes into view. (e.g. when a user clicks Open to pull out the form on the envelope on the Contact page),gab-rodier.github.io/portfolio/contact/,form_view,"element_name (form name, e.g. ""contact form"")
+element_id (form ID, e.g. ""my-form"")
+click_text (name of the text clicked to bring the form into view, e.g. ""Open"")","*// This event will fire when a form comes into view. (e.g. when a user clicks Open to pull out the form on the envelope on the Contact page) //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'form_view',
+    element_name: <form name>, //string, e.g. ""contact form""
+    element_id: <form ID>, //string, e.g. ""my-form""
+    click_text: <name of the text clicked to bring the form into view> //string, e.g. ""Open""
+});"
+Form Submission,This event will fire when the user successfully submits a form.,gab-rodier.github.io/portfolio/contact/,form_submit,"click_text (text of the form submit button, e.g. ""Send Note"")
+element_name (form name, e.g. ""contact form"")
+element_id (form ID, e.g. ""my-form"")
+form_selection (selected dropdown reason when applicable, e.g. ""Reason: Just Saying Hi"")","*// This event will fire when the user successfully submits a form. //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'form_submit',
+    click_text: <text of the form submit button>, //string, e.g. ""Send Note""
+    element_name: <form name>, //string, e.g. ""contact form""
+    element_id: <form ID>, //string, e.g. ""my-form""
+    form_selection: <selected dropdown reason when applicable> //string, e.g. ""Reason: Just Saying Hi"", undefined if n/a
+});"
+Main Nav Clicks,This event will fire when a user clicks any element of the main navigation.,ALL PAGES,main_nav_click,"click_text (text of the clicked element, e.g. ""Get in Touch""; use value ""logo icon"" for icon clicks)
+click_url (destination URL, e.g. ""gab-rodier.github.io/portfolio/contact/"", ""gab-rodier.github.io/portfolio/#about"")
+element_type (type of element, e.g. ""link"", ""button"", ""icon"")
+element_location (name of the nav type, e.g. ""static"", ""hamburger"")","*// This event will fire when a user clicks any element of the main navigation. //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'main_nav_click',
+    click_text: <text of the clicked element>, //string, use value ""logo icon"" for icon clicks, e.g. ""Get in Touch""
+    click_url: <destination URL>, //string, e.g. ""gab-rodier.github.io/portfolio/contact/"", ""gab-rodier.github.io/portfolio/#about""
+    element_type: <type of element>, //string, e.g. ""link"", ""button"", ""icon""
+    element_location: <name of the nav type> //string, e.g. ""static"", ""hamburger""
+});"
+Footer Nav Clicks,This event will fire when a user clicks any element of the footer navigation.,ALL PAGES,footer_nav_click,"click_text (text of the clicked element, e.g. ""AI"", ""Email Me""; use value ""logo icon"" for icon clicks)
+click_url (destination URL, use value ""gab.rodier address"" instead of the mailto URL for Email me clicks)
+element_type (type of element, e.g. ""link"", ""button"", ""icon"")
+element_location (name of the footer section, e.g. ""Get in Touch"", ""Explore""; use value ""logo"" for icon clicks)","*// This event will fire when a user clicks any element of the footer navigation. //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'footer_nav_click',
+    click_text: <text of the clicked element>, //string, use value ""logo icon"" for icon clicks, e.g. ""AI"", ""Email Me""
+    click_url: <destination URL>, //string, use value ""gab.rodier address"" instead of the mailto URL for Email me clicks
+    element_type: <type of element>, //string, e.g. ""link"", ""button"", ""icon""
+    element_location: <name of footer section> //string, e.g. ""Get in Touch"", ""Explore"", ""logo""
+});"
+File Download,This event will fire when a user clicks to download a file. (e.g. Resume Downloads),ALL PAGES,file_download,"file_name (e.g. ""Gabrielle-Rodier-Resume"")
+file_extension (e.g. ""PDF"")
+click_url (e.g. ""https://gab-rodier.github.io/portfolio/Gabrielle-Rodier-Resume.pdf"")
+click_text (e.g. ""Resume (PDF)"", ""Download the PDF"")
+element_location (name of where the link lives, e.g. ""footer"", ""contact page"")","*// This event will fire when a user clicks to download a file. (e.g. Resume Downloads) //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'file_download',
+    file_name: <name of file>, //string, e.g. ""Gabrielle-Rodier-Resume""
+    file_extension: <extension type of file>, //string, e.g. ""PDF""
+    click_url: <file URL link>, //string, e.g. ""https://gab-rodier.github.io/portfolio/Gabrielle-Rodier-Resume.pdf""
+    click_text: <click text to download>, //string, e.g. ""Resume (PDF)"", ""Download the PDF""
+    element_location: <name of where the link lives> //string, e.g. ""footer"", ""contact page""
+});"
+Click to Email,This event will fire when a user clicks a mailto link.,ALL PAGES,click_to_email,"click_text (text of the clicked link, e.g. ""Email me"", ""gab.rodier address"")
+element_location (name of where the link lives, e.g. ""footer"", ""contact page"")","*// This event will fire when a user clicks a mailto link. //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'click_to_email',
+    click_text: <text of clicked link>, //string, e.g. ""Email me"", ""gab.rodier address""
+    element_location: <name of where the link lives> //string, e.g. ""footer"", ""contact page""
+});"
+Copy-Link Clicks,This event will fire when a user clicks a 'Copy' link to copy text like my email.,ALL PAGES,copy_link_click,"click_text (text of the clicked link, e.g. ""Copy"")
+element_location (name of where the link lives, e.g. ""footer"")
+element_name (name of what's being copied, e.g. ""gab.rodier address"")","*// This event will fire when a user clicks a 'Copy' link to copy text like my email. //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'copy_link_click',
+    click_text: <text of clicked link>, //string, e.g. ""Copy""
+    element_location: <name of where the link lives>, //string, e.g. ""footer""
+    element_name: <name of what's being copied> //string, e.g. ""gab.rodier address""
+});"
+Tool Interaction,"This event will fire when a user interacts with the Maturity Framework tool (e.g. selected a dropdown or clicked 'See My Result') or the Scoping tool (e.g. selected a checkbox or selected a wide-span update like 'Clear All' / 'Reset to Sample', or selected a multi-choice button like 'Medium' / 'Yes' / 'Light').","Selected a dropdown like 'A few basic ones' for 'Strategic measurement' field in the Maturity tool,
+Clicked 'See My Result' in the Maturity tool,
+Selected a checkbox like 'Discovery + kickoff' for 'Strategy' section in the Scoping tool,
+Selected a wide-span update like 'Clear All' / 'Reset to Sample' in the Scoping tool,
+Selected a multi-choice button like 'Medium' / 'Yes' / 'Light' in the Scoping tool",tool_interaction,"element_type (type of interaction, e.g. ""dropdown selection"", ""submit for result"", ""checkbox selection"", ""selections wide-span update"", ""multi-choice button selection"")
+element_location (name of the applicable tool, e.g. ""Maturity Tool"", ""Scoping Tool"")
+element_name (name of aligning interaction item when applicable, e.g. ""Data collection"", ""Strategic measurement"", ""Reporting"", ""Data application"", ""Audience segmentation"", ""Strategy"", ""Tracking"", ""Data Quality"", ""Reporting"", ""Consent"", ""CRO"", ""Overall business + digital complexity"", ""Cross-domain journeys"", ""Ecommerce"", ""Server-side tagging"", ""Stakeholder + admin load"")
+click_text (text of the interaction clicked, e.g. ""level 2"" //NOTE: use level number of selected dropdown for maturity tool, ""See My Result"", ""Clear All"", ""Reset to Sample"", ""checkbox section option 3"" //NOTE: use index number within the given section of selected checkbox for scoping tool, ""High"", ""Yes"", ""Heavy"")","*// This event will fire when a user interacts with the Maturity Framework tool (e.g. selected a dropdown or clicked 'See My Result') or the Scoping tool (e.g. selected a checkbox or selected a wide-span update like 'Clear All' / 'Reset to Sample', or selected a multi-choice button like 'Medium' / 'Yes' / 'Light'). //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'tool_interaction',
+    element_type: <type of interaction>, //string, e.g. ""dropdown selection"", ""submit for result"", ""checkbox selection"", ""selections wide-span update"", ""multi-choice button selection""
+    element_location: <name of applicable tool>, //string, e.g. ""Maturity Tool"", ""Scoping Tool""
+    element_name: <name of aligning interaction item when applicable>, //string, e.g. ""Data collection"", ""Strategic measurement"", ""Reporting"", ""Data application"", ""Audience segmentation"", ""Strategy"", ""Tracking"", ""Data Quality"", ""Reporting"", ""Consent"", ""CRO"", ""Overall business + digital complexity"", ""Cross-domain journeys"", ""Ecommerce"", ""Server-side tagging"", ""Stakeholder + admin load""
+    click_text: <text of the interaction clicked> //string, e.g. ""level 2"" (NOTE: use level number of selected dropdown for maturity tool), ""See My Result"", ""Clear All"", ""Reset to Sample"", ""checkbox section option 3"" (NOTE: use index number within the given section of selected checkbox for scoping tool), ""High"", ""Yes"", ""Heavy""
+});"
+Modal Open,This event will fire when a user opens a pop-up modal or tool. (e.g. a Case Study or a Work Sample or the Maturity Framework Tool or the Estimates Tool),"Clicks on ""Read the case"" on the Department Turnaround and Growth card in the Operations section mid-page on the homepage,
+Clicks on ""Open the dashboard"" on the Executive Dashboard card on the Work Samples page,
+Clicks on ""Open The Tool"" in the Maturity Tool area of the Analytics section mid-page on the homepage,
+Clicks on ""Open The Tool"" in the Scope Tool area of the Operations section mid-page on the homepage",modal_open,"click_text (text of the element that opened the modal, e.g. ""Read the case"", ""Open the dashboard"", ""Open The Tool"")
+element_name (descriptive name of the modal, e.g. ""Department Turnaround and Growth Case Study"", ""Executive Dashboard Work Sample"", ""Maturity Framework Tool"")
+element_type (category of the modal, e.g. ""Case Study"", ""Work Sample"", ""Tool"")","*// This event will fire when a user opens a pop-up modal or tool. (e.g. a Case Study or a Work Sample or the Maturity Framework Tool or the Estimates Tool) //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'modal_open',
+    click_text: <text of the element that opened the modal>, //string, e.g. ""Read the case"", ""Open the dashboard"", ""Open The Tool""
+    element_name: <descriptive name of the modal>, //string, e.g. ""Department Turnaround and Growth Case Study"", ""Executive Dashboard Work Sample"", ""Maturity Framework Tool""
+    element_type: <category of the modal> //string, e.g. ""Case Study"", ""Work Sample"", ""Tool""
+});"
+Modal Close,This event will fire when a user closes a pop-up modal or tool. (e.g. a Case Study or a Work Sample or a Tool),"Clicks to exit the Department Turnaround and Growth popup in the Operations section mid-page on the homepage,
+Clicks to exit the Executive Dashboard popup on the Work Samples page,
+Clicks to exit the Maturity Tool of the Analytics section mid-page on the homepage,
+Clicks to exit the Scope Tool of the Operations section mid-page on the homepage",modal_close,"element_name (descriptive name of the modal, e.g. ""Department Turnaround and Growth Case Study"", ""Executive Dashboard Work Sample"", ""Maturity Framework Tool"")
+element_type (category of the modal, e.g. ""Case Study"", ""Work Sample"", ""Tool"")","*// TThis event will fire when a user closes a pop-up modal or tool. (e.g. a Case Study or a Work Sample or a Tool) //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'modal_close',
+    element_name: <descriptive name of the modal>, //string, e.g. ""Department Turnaround and Growth Case Study"", ""Executive Dashboard Work Sample"", ""Maturity Framework Tool""
+    element_type: <category of the modal> //string, e.g. ""Case Study"", ""Work Sample"", ""Tool""
+});"
+Expandable Content Clicks,"This event will fire when a user clicks to exapand any content on the page or popup module. (e.g. tabs, expandable titles, etc)","Clicking a step like 'Test or Ship' in The Cycle of UX Data section on /portfolio/#analytics, 
+Clicking a tab like 'Key Events' in Tracking Plan + Audit Excerpt work sample popup, 
+Clicking a tab like 'Content' in Executive Dashboard work sample popup,
+Clicking a folder tab like 'Analytics + UX' in the Toolkit Hightlights section on /portfolio/#about,
+Clicking a spine like 'Volunteering' in the Off the Clock section on /portfolio/#about.",expandable_content_click,"click_text (text of the clicked element, e.g. ""Test or Ship"", ""Key Events"", ""Content"", ""Analytics + UX"", ""Volunteering"")
+element_location (name of the section the expandable content sits in, e.g. ""The Cycle of UX Data"", ""Tracking Plan + Audit Excerpt work sample"", ""Executive Dashboard work sample"", ""Toolkit Highlights"", ""Off the Clock"")","*// This event will fire when a user clicks to exapand any content on the page or popup module. (e.g. tabs, expandable titles, etc) //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'expandable_content_click',
+    click_text: <text of the clicked element>, //string, e.g. ""Test or Ship"", ""Key Events"", ""Content"", ""Analytics + UX"", ""Volunteering""
+    element_location: <name of the section the expandable content sits in> //string, e.g. ""The Cycle of UX Data"", ""Tracking Plan + Audit Excerpt work sample"", ""Executive Dashboard work sample"", ""Toolkit Highlights"", ""Off the Clock""
+});"
+Secondary Measurement,,,,,
+Content Slider Interactions,This event will fire when a user clicks to make content shift. (e.g. content slider bar or arrow click),"Slider clicks - arrow or bar - in review feedback quotes section on homepage Leadership section, 
+Slider clicks - arrow or bar - in Measurement Strategy Excerpt work sample popup, 
+Slider clicks - arrow or bar - in Focused Actionable Analysis work sample popup,
+Slider clicks - arrow or bar - in Quarterly Department Review work sample popup",content_slider_interaction,"action (type of slider interaction, e.g. ""shift arrow click"", ""shift bar click"")
+click_direction (direction of the interaction, use when the slider is shifted, e.g. ""forward"", ""backward"")
+element_location (name of the slider, e.g. ""review feedback quotes"" for the Leadership section slider, ""Quarterly Department Review work sample"")
+from_state (slide number that a user is on when clicking to slide elsewhere, e.g. ""1-2"", ""1"")
+to_state (slide number that a user is clicking to, e.g. ""2-3"", ""2"")
+total_options (number of total slides that exist in the slider, e.g. ""4"", ""8"")","*// This event will fire when a user clicks to make content shift. (e.g. content slider bar or arrow click) //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'content_slider_interaction',
+    action: <type of slider interaction>, //string, e.g. ""shift arrow click"", ""shift bar click""
+    click_direction: <direction of the interaction>, //string, e.g. ""forward"", ""backward""
+    element_location: <name of the slider>, //string, e.g. ""review feedback quotes"", ""Quarterly Department Review work sample""
+    from_state: <slide number a user is on when clicking to another slide>, //string, e.g. ""1-2"", ""1""
+    to_state: <slide number a user is clicker to>, //string, e.g. ""2-3"", ""2""
+    total_options: <number of total slides that exist> //string, e.g. ""4"", ""8""
+});"
+Hamburger Nav Open,This event will fire when a user opens the main navigation hamburger on small screens like mobile.,ALL PAGES,hamburger_nav_open,,"*// This event will fire when a user opens the main navigation hamburger on small screens like mobile. //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'hamburger_nav_open'
+});"
+Filter Interactions,"This event will fire when a user interacts with any filter. (e.g. clicking a selectable filter option, entering a filter search term) 
+
+//NOTE: for firing on search term filter interactions, wait 2,000ms after typing stops in search bar","Clicking an Area pill like 'Digital Marketing' or a Level pill like 'Expert' on /portfolio/skills-tools/),
+Entering a term like 'platform' in the search bar on the /portfolio/skills-tools/ page,
+Selecting a Hostname like 'docs.larkspurlabs.com' or a Date range like 'Last 26 weeks' in the Executive Dashboard work sample popup.",filter_interaction,"element_location (name of where filter lives, e.g. ""Skills + Tools"", ""Executive Dashboard work sample"")
+element_name (filter name, e.g. ""Area"", ""Level"", ""Search Term"", ""Hostname, ""Date range"")
+element_type (type of filter element, e.g. ""selectable option"", ""search bar"")
+filter_selection (selected filter option, e.g. ""Digital Marketing, ""Expert"", ""docs.larkspurlabs.com"", ""Last 26 weeks""; use the entered search term for search filters, use ""*Omitted!* user PII suspected"" for any search term value that looks like user PII)
+results_count (number of results in the list after the filter is applied if applicable, e.g. ""1"", undefined if n/a like for Executive Dashboard work sample)
+total_options (number of possible results in total when filters are not applied if applicable, e.g. ""107"", undefined if n/a like for Executive Dashboard work sample)
+secondary_filter_applied (name and selection of enabled filter option if there's another filter applied in addition to the current filter selection, e.g. ""Level: Expert"", ""Hostname: docs.larkspurlabs.com"", undefined if n/a)
+search_filter_applied (search term of enabled search filter if one is applied in addition to the current filter selection, e.g. ""platform"", undefined if n/a)","*// This event will fire when a user interacts with any filter. (e.g. clicking a selectable filter option, entering a filter search term) - NOTE: for firing on search term filter interactions, wait 2,000ms after typing stops in search bar //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'filter_interaction',
+    element_location: <name of where filter lives>, //string, e.g. ""Skills + Tools"", ""Executive Dashboard work sample""
+    element_name: <filter name>, //string, e.g. ""Area"", ""Level"", ""Search"", ""Hostname"", ""Date range""
+    element_type: <type of filter element>, //string, e.g. ""selectable option"", ""search bar""
+    filter_selection: <selected filter option>, //string, use the entered search term for search filters, e.g. ""Digital Marketing"", ""Expert"", ""docs.larkspurlabs.com"", ""Last 26 weeks"", use the entered search term for search filters, use ""*Omitted!* user PII suspected"" for any search term value that looks like user PII
+    results_count: <number of results in the list after the filter is applied if applicable>, //string, e.g. ""1"", undefined if n/a like for Executive Dashboard work sample
+    total_options: <number of possible results in total when filters are not applied if applicable>, //string, e.g. ""107"", undefined if n/a like for Executive Dashboard work sample
+    secondary_filter_applied: <name and selection of enabled filter option if there's another filter applied in addition to the current filter selection>, //string, e.g. ""Level: Expert"", ""Hostname: docs.larkspurlabs.com"", undefined if n/a
+    search_filter_applied: <search term of enabled search filter if one is applied in addition to the current filter selection> //string, e.g. ""platform"", undefined if n/a
+});"
+CTA Click,"This event will fire when the user clicks a CTA button. (e.g. ""See Deliverable Examples"", ""Download Resume"", ""See deliverables optimized by AI efficiencies"", ""Explore All AI Skills + Tools"", ""Back to the Portfolio"", ""Email Me"", ""LinkedIn"")","""See Deliverable Examples"", 
+""Download Resume"",
+""See deliverables optimized by AI efficiencies"",
+""Explore All AI Skills + Tools"",
+""Back to the Portfolio"",
+""Email Me"",
+""LinkedIn""",cta_click,"click_text (text of the cta link, e.g. ""See Deliverable Examples"", ""Download Resume"", ""See deliverables optimized by AI efficiencies"", ""Explore All AI Skills + Tools"", ""Back to the Portfolio"", ""Email Me"", ""LinkedIn"", ""Try the Self-Assessment"", ""Try the Estimator"", ""Get in Touch"")
+element_location (name of the parent section, e.g. ""Analytics section"", ""Operations section"", ""Homepage hero"", ""AI section"", ""Skills + Tools page"", ""About section"", ""Footer"", ""Maturity Framework case study"", ""Process case study"", ""Work Samples page"")","*// This event will fire when the user clicks a CTA button. (e.g. ""See Deliverable Examples"", ""Download Resume"", ""See deliverables optimized by AI efficiencies"", ""Explore All AI Skills + Tools"", ""Back to the Portfolio"", ""Email Me"", ""LinkedIn"") //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'cta_click',
+    click_text: <text of the cta link>, //string, e.g. ""See Deliverable Examples"", ""Download Resume"", ""See deliverables optimized by AI efficiencies"", ""Explore All AI Skills + Tools"", ""Back to the Portfolio"", ""Email Me"", ""LinkedIn"", ""Try the Self-Assessment"", ""Try the Estimator"", ""Get in Touch""
+    element_location: <name of the parent section where the cta lives> //string, e.g. ""Analytics section"", ""Operations section"", ""Homepage hero"", ""AI section"", ""Skills + Tools page"", ""About section"", ""Footer"", ""Maturity Framework case study"", ""Process case study"", ""Work Samples page""
+});"
+Back to Top Clicks,This event will fire when a user clicks to go 'Back to Top' on a page.,ALL PAGES,back_to_top_click,"page_percentage (% of page depth where this was clicked, e.g. ""75"")","*// This event will fire when a user clicks to go 'Back to Top' on a page. //*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'back_to_top_click',
+    page_percentage: <% of page depth where this was clicked> //number, e.g. ""75""
+});"
+Info Hover,"This event will fire when a user hovers to reveal additional info content. (e.g. AI Hours Saved reinvestment hover, Skills + Tools level hover)
+
+//NOTE: require 1,500ms of hovering on the element for this to fire","Hover on info-icon on the Hours Saved #s in the AI section,
+Hover on specific skills/tools on the Skills + Tools separate page",info_hover,"element_name (name of the element tied to the hover, e.g. ""5h Tracking Document Scaffolding"", ""Opportunity Identification"")
+element_location (name of the section where the hover exists, e.g. ""AI - Hours Saved"", ""Skills + Tools - Leadership + Operations"")
+element_type (type of info hover value, e.g. ""Reinvested Into"", ""Basic Level"", ""Level With Note"")","*// This event will fire when a user hovers to reveal additional info content. (e.g. AI Hours Saved reinvestment hover, Skills + Tools level hover) - NOTE: require 1,500ms of hovering on the element for this to fire//*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+    event: 'info_hover',
+    element_name: <name of the element tied to the hover>, //string, e.g. ""5h Tracking Document Scaffolding"", ""Opportunity Identification""
+    element_location: <name of the section where the hover exists>, //string, e.g. ""AI - Hours Saved"", ""Skills + Tools - Leadership + Operations""
+    element_type: <type of info hover value> //string, e.g. ""Reinvested Into"", ""Basic Level"", ""Level With Note""
+});"

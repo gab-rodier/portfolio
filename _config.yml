@@ -1,0 +1,10 @@
+# Keeps working files in the repo but off the live site
+exclude:
+  - CLAUDE.md
+  - reference
+  - qa
+  - gtm-import
+  - tests
+  - node_modules
+  - package.json
+  - package-lock.json
