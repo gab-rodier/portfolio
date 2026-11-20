@@ -1,0 +1,189 @@
+/* ==== dialogs ==== */
+
+/* popups (case studies) */
+
+dialog.csd {
+  margin: auto;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  max-width: min(880px,calc(100vw - 32px));
+  width: 100%;
+  max-height: calc(100dvh - 40px);
+  color: var(--ink);
+}
+
+dialog.csd:focus,
+dialog.csd:focus-visible {
+  outline: none;
+}
+
+dialog.csd::backdrop {
+  background: rgba(20,28,25,.55);
+  backdrop-filter: blur(3px);
+}
+
+.csd .dlg-in {
+  background: var(--surface-raised);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-soft);
+  padding: 0 44px 44px;
+  overflow: auto;
+  max-height: calc(100dvh - 40px);
+}
+
+.csd .dlg-bar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 -44px;
+  padding: 16px 16px 8px;
+  background: var(--surface-raised);
+}
+
+.csd .dlg-close {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-pill);
+  background: transparent;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color var(--fast),color var(--fast);
+}
+
+.csd .dlg-close svg {
+  transition: transform var(--base);
+}
+
+.csd .dlg-close:hover {
+  background: var(--forest);
+  color: var(--on-forest);
+  border-color: var(--forest);
+}
+
+.csd .dlg-close:hover svg {
+  transform: rotate(180deg);
+}
+
+.csd .eyebrow {
+  margin: 0;
+}
+
+.csd .dlg-in h3 {
+  font-weight: 600;
+  font-size: clamp(28px,3.4vw,40px);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  margin-top: 10px;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.csd .client {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  margin-top: 12px;
+  max-width: 62ch;
+}
+
+.csd .cs {
+  display: grid;
+  grid-template-columns: 150px minmax(0,1fr);
+  gap: 0 28px;
+  margin-top: 32px;
+}
+
+.csd .cs dt {
+  font: 500 13px/1.4 var(--mono);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--sprout-text);
+  padding-top: 4px;
+  margin-bottom: 24px;
+}
+
+.csd .cs dd {
+  margin: 0 0 24px;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.csd .cs dd ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.csd .cs dd li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 10px;
+}
+
+.csd .cs dd li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .62em;
+  width: 16px;
+  height: 8px;
+  background: var(--sprout);
+  border-radius: 50% 0;
+}
+
+.csd .cs dd:last-of-type {
+  background: var(--tint-sage);
+  color: var(--tint-sage-ink);
+  padding: 20px 22px;
+  border-radius: var(--leaf);
+  margin-bottom: 0;
+}
+
+.csd .cs dt:last-of-type {
+  margin-bottom: 0;
+  padding-top: 24px;
+}
+
+.csd .fig {
+  margin-top: 28px;
+  background: var(--tint-peach);
+  border-radius: var(--r-md);
+  padding: 22px;
+  overflow-x: auto;
+}
+
+.csd .fig svg {
+  display: block;
+  width: 100%;
+  min-width: 520px;
+  height: auto;
+}
+
+.csd .fig svg text {
+  font-family: var(--font);
+  font-weight: 500;
+}
+
+.csd .fig-cap {
+  font: 500 12.5px var(--mono);
+  letter-spacing: .04em;
+  color: var(--tint-peach-ink);
+  margin-top: 12px;
+}
+
+.csd .yes {
+  color: var(--rose-deep);
+  font-weight: 700;
+}
+
+.csd .dlg-cta {
+  margin-top: 32px;
+}

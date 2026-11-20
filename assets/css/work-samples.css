@@ -1,0 +1,379 @@
+/* ==== work samples ==== */
+
+/* work samples page */
+
+.wsp {
+  padding-top: 40px;
+  min-height: 70vh;
+}
+
+.wsp .shead {
+  margin-top: 36px;
+}
+
+.wsgrid {
+  grid-template-columns: repeat(6,minmax(0,1fr)) !important;
+}
+
+.wsgrid .card {
+  grid-column: span 2;
+}
+
+.wsgrid .card:nth-child(n+4) {
+  grid-column: span 3;
+}
+
+.wscta .wsc-pri {
+  background: #fff;
+  border-color: var(--ink);
+  color: var(--ink);
+  box-shadow: 0 2px 8px #1e211e14;
+}
+
+.wscta .wsc-pri:hover,
+.wscta .wsc-pri:focus-visible {
+  background: #fff;
+  color: var(--ink);
+  transform: translate(-2px,-2px);
+  box-shadow: 5px 5px 0 var(--rose-deep);
+}
+
+.wscta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 32px;
+  margin-top: 48px;
+  padding: 32px 36px;
+  background: var(--tint-rose);
+  color: var(--tint-rose-ink);
+  border-radius: var(--leaf);
+}
+
+.wscta .h3 {
+  max-width: 22ch;
+  color: var(--tint-rose-ink);
+}
+
+.wsback-b {
+  margin-top: 48px;
+}
+
+.sl {
+  fill: var(--surface-raised);
+}
+
+.sl-band {
+  fill: var(--forest);
+}
+
+.sl-band2 {
+  fill: var(--forest);
+}
+
+.sl-t {
+  fill: var(--ink);
+}
+
+.sl-r {
+  fill: var(--tint-sage-ink);
+  opacity: .35;
+}
+
+.sl-dot {
+  fill: var(--rose);
+}
+
+.sl-st {
+  stroke: var(--sprout);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.sh {
+  fill: var(--surface-raised);
+  stroke: var(--tint-peach-ink);
+  stroke-width: 1.2;
+  stroke-opacity: .4;
+}
+
+.sh-h {
+  fill: var(--tint-peach-ink);
+  opacity: .85;
+}
+
+.sh-ln {
+  stroke: var(--tint-peach-ink);
+  stroke-opacity: .25;
+  fill: none;
+}
+
+[class^="sh-c"] {
+  fill: var(--tint-peach-ink);
+  opacity: .35;
+}
+
+.sh-c.ok {
+  fill: var(--forest);
+  opacity: .9;
+}
+
+.sh-c.bad {
+  fill: var(--rose-deep);
+  opacity: 1;
+}
+
+.db-t {
+  fill: var(--surface-raised);
+}
+
+.db-n {
+  fill: var(--forest);
+}
+
+.db-c {
+  fill: var(--surface-raised);
+}
+
+.db-a {
+  fill: var(--tint-sage);
+}
+
+.db-l {
+  fill: none;
+  stroke: var(--forest);
+  stroke-width: 2.5;
+}
+
+.db-d {
+  fill: var(--rose-deep);
+}
+
+.an-ax {
+  stroke: var(--tint-peach-ink);
+  stroke-opacity: .4;
+  stroke-width: 1.5;
+}
+
+[class^="an-b"] {
+  fill: var(--tint-peach-ink);
+  opacity: .45;
+}
+
+.an-b.hl {
+  fill: var(--rose-deep);
+  opacity: 1;
+}
+
+.an-arr {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.an-dot {
+  fill: var(--ink);
+}
+
+.op-tg {
+  stroke: var(--ink);
+  stroke-width: 2;
+  stroke-dasharray: 5 5;
+  opacity: .5;
+}
+
+.op-ln {
+  stroke: var(--surface-raised);
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.op-sg {
+  stroke: var(--sprout);
+  stroke-width: 4;
+}
+
+.op-y1 {
+  fill: var(--surface-raised);
+  stroke: var(--rose-deep);
+  stroke-width: 2.5;
+}
+
+.op-y2 {
+  fill: var(--forest);
+}
+
+@media (max-width:1000px) {
+  .wsgrid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .wsgrid .card,
+  .wsgrid .card:nth-child(n+4) {
+    grid-column: auto;
+  }
+  .wsgrid .card:last-child {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width:640px) {
+  .wsgrid {
+    grid-template-columns: 1fr !important;
+  }
+  .wsgrid .card:last-child {
+    grid-column: auto;
+  }
+  .wscta {
+    padding: 24px 20px;
+  }
+}
+
+/* sample viewer: a light document shell; the deliverables keep their own fictional-client palette */
+
+dialog.wsd {
+  margin: auto;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  max-width: min(1080px,calc(100vw - 32px));
+  width: 100%;
+  max-height: calc(100dvh - 40px);
+  color: #1E3B2F;
+}
+
+dialog.wsd:focus,
+dialog.wsd:focus-visible {
+  outline: none;
+}
+
+dialog.wsd::backdrop {
+  background: rgba(20,28,25,.55);
+  backdrop-filter: blur(3px);
+}
+
+.wsd {
+  --paper: #F2F1E8;
+  --paper-2: #E8EBDD;
+  --paper-3: #DDE4D3;
+  --ink: #1E3B2F;
+  --ink-2: #3C5A4B;
+  --ink-3: #5A7567;
+  --accent: #3E7C5A;
+  --accent-ink: #22573D;
+  --line: #C9D4C6;
+  --p1: #CFE0D3;
+  --p2: #A8CDB4;
+  --p3: #77AE8C;
+  --p4: #4A8C66;
+  --p5: #22573D;
+  --on-accent: #F4F3EA;
+  --rose: #E7C4BB;
+  --rose-2: #F3E1DB;
+  --rose-ink: #B05F52;
+  --rose-deep: #6E3329;
+  --soil: #CDBFA9;
+  --hdr-bg: #1F3A2E;
+  --hdr-fg: #EFE9DC;
+  --hdr-mute: #BFD3C5;
+  --hdr-acc: #E9B8AC;
+  --hdr-line: #355848;
+  --serif: var(--font);
+  --sans: var(--font);
+  color-scheme: light;
+}
+
+.wsd .dlg-in {
+  background: #FFFDF8;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-soft);
+  padding: 0 36px 36px;
+  overflow: auto;
+  max-height: calc(100dvh - 40px);
+  font-family: var(--font);
+}
+
+.wsd .dlg-bar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 -36px;
+  padding: 16px 16px 8px;
+  background: #FFFDF8;
+}
+
+.wsd .dlg-close {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1.5px solid #1E211E;
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: #1E211E;
+  font: 600 15px var(--font);
+  cursor: pointer;
+  transition: background-color var(--fast),color var(--fast);
+}
+
+.wsd .dlg-close svg {
+  transition: transform var(--base);
+}
+
+.wsd .dlg-close:hover {
+  background: #2F4A40;
+  color: #F6F4EA;
+  border-color: #2F4A40;
+}
+
+.wsd .dlg-close:hover svg {
+  transform: rotate(180deg);
+}
+
+.wsd .ws-head {
+  display: block;
+  margin-bottom: 24px;
+}
+
+.wsd .ws-head .eyebrow {
+  font: 600 13px/1.4 var(--font);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #47714F;
+  margin: 0;
+}
+
+.wsd .ws-head h3:not(.sr-only) {
+  font: 600 clamp(26px,3vw,34px)/1.12 var(--font);
+  letter-spacing: -.02em;
+  margin-top: 8px;
+  color: #1E211E;
+}
+
+.wsd .ws-head .client {
+  font-size: 16px;
+  color: #5E5650;
+  margin-top: 8px;
+}
+
+.wsd .dash-range .csel {
+  display: inline-block;
+  width: auto;
+  min-width: 190px;
+}
+
+@media (max-width:640px) {
+  dialog.wsd {
+    max-width: calc(100vw - 20px);
+  }
+  .wsd .dlg-in {
+    padding: 0 16px 24px;
+  }
+  .wsd .dlg-bar {
+    margin: 0 -16px;
+  }
+}

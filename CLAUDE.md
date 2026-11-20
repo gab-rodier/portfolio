@@ -13,7 +13,11 @@ Live site: https://gab-rodier.github.io/portfolio/ (GitHub Pages, static, no bui
 
 ## Structure
 - `index.html` (home), `work-samples/`, `skills-tools/`, `contact/` are four real pages.
-- `assets/site.css`, `assets/site.js`, `assets/img/`
+- `assets/css/*.css`: loaded in this order (the order is the cascade): base, header-hero, sections, dialogs, responsive, work-samples, widgets, type, phone. Later files intentionally override earlier ones.
+- `assets/js/main.js` (ES module entry) imports `assets/js/features/*.js`; each feature checks for its own elements, so one entry serves all pages. No build step.
+- `assets/img/` (images, favicon.svg, apple-touch-icon.png)
+- Each page only includes the dialogs it opens: case studies (`cs-*`) on home, work samples (`ws-*`) on `work-samples/`.
+- `tests/` (not deployed): `shots.mjs` (screenshots of every page and state at 390/768/1024/1440), `diff.mjs` (pixel diff), `styles.mjs` (computed-style diff). Run with Node; see `package.json`.
 - `Gabrielle-Rodier-Resume.pdf` sits at the root.
 - Old hash links (`#samples`, `#skills`, `#write`) on home redirect to the new pages, so keep that working.
 - Contact form posts to Formspree via fetch, with the envelope animation and a `_gotcha` spam trap.
