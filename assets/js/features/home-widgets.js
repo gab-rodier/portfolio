@@ -95,6 +95,8 @@ export function initCaseRowDots() {
   $$('.ocases').forEach(row => {
     const items = Array.from(row.children);
     if (items.length < 2) return;
+    // The row's side gutter (16px on phones, 48px on tablets) is its scroll padding.
+    const gut = () => parseFloat(getComputedStyle(row).scrollPaddingLeft) || 16;
     const dots = document.createElement('div');
     dots.className = 'oc-dots';
     dots.setAttribute('aria-hidden', 'true');
@@ -102,14 +104,15 @@ export function initCaseRowDots() {
       const b = document.createElement('button');
       b.type = 'button';
       b.tabIndex = -1;
-      b.addEventListener('click', () => row.scrollTo({ left: card.offsetLeft - row.offsetLeft - 16, behavior: 'smooth' }));
+      b.addEventListener('click', () => row.scrollTo({ left: card.offsetLeft - row.offsetLeft - gut(), behavior: 'smooth' }));
       dots.appendChild(b);
     });
     row.parentNode.insertBefore(dots, row.nextSibling);
     const update = () => {
       const x = row.scrollLeft;
       let k = 0, best = 1e9;
-      items.forEach((c, i) => { const v = Math.abs(c.offsetLeft - row.offsetLeft - 16 - x); if (v < best) { best = v; k = i; } });
+      const g = gut();
+      items.forEach((c, i) => { const v = Math.abs(c.offsetLeft - row.offsetLeft - g - x); if (v < best) { best = v; k = i; } });
       if (x >= row.scrollWidth - row.clientWidth - 4) k = items.length - 1;
       Array.from(dots.children).forEach((b, i) => b.classList.toggle('on', i === k));
     };

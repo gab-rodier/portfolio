@@ -387,7 +387,7 @@
   }
 }
 
-@media (min-width:641px) {
+@media (min-width:761px) {
   .lx-t {
     display: none;
   }
@@ -551,7 +551,7 @@
   }
 }
 
-@media (min-width:641px) {
+@media (min-width:901px) {
   .hg-tg {
     all: unset;
     display: block;
@@ -602,4 +602,391 @@
   .f-bot {
     padding-bottom: 72px;
   }
+}
+
+/* Narrow Android phones (360px, e.g. Galaxy A-series): Skills filter chips wrap like on 390px phones */
+@media (max-width:380px) {
+  .hb-filters {
+    padding: 14px 12px !important;
+  }
+  .hb-chips {
+    gap: 6px !important;
+  }
+  .hchip {
+    padding: 7px 10px !important;
+  }
+}
+
+/* Footer name: the top of the capital letters sits on the bottom of the last row of Explore
+   links at every width, with a shorter gap down to the copyright row. text-box trims the line
+   box to cap height and baseline; browsers without it get an em-based approximation. */
+.foot .bigname {
+  margin: 0 !important;
+  text-box: trim-both cap alphabetic;
+}
+
+@supports not (text-box: trim-both cap alphabetic) {
+  .foot .bigname {
+    margin-top: -.19em !important;
+  }
+}
+
+.foot .bigname + .f-bot {
+  margin-top: 32px;
+}
+
+/* ==== Responsive tiers ====
+   Phones (640px and below) keep the rules above. These blocks extend selected phone
+   behaviors up to the 760px and 900px tiers. Each block is scoped to the new range only,
+   so nothing at 640px and below changes. */
+
+/* <=900: Deliverable CTAs show only "See Deliverable Examples". The description never
+   slides out, so the button keeps its size on hover, focus, and tap. */
+@media (max-width:900px) {
+  .xcta .xc-m {
+    display: none;
+  }
+}
+
+/* 641-900: AI hours stay three across in one row; popups span the row */
+@media (min-width:641px) and (max-width:900px) {
+  .rv {
+    display: grid !important;
+    grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+    gap: 0 20px !important;
+    position: relative;
+  }
+  .rv-i {
+    position: static !important;
+    padding-top: 16px !important;
+    min-width: 0;
+  }
+  .rv-h,
+  .rv-info {
+    position: static !important;
+  }
+  .rv-h {
+    font-size: clamp(24px,3.6vw,32px) !important;
+    gap: 6px !important;
+    white-space: nowrap;
+  }
+  .rv-i .mono {
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+    display: block;
+    margin-top: 6px;
+  }
+  .rv-pop {
+    left: 0 !important;
+    right: 0 !important;
+    width: auto !important;
+    max-width: none !important;
+    transform: none !important;
+  }
+  .rv-pop::after {
+    display: none;
+  }
+  .rv-info,
+  .rv-info:hover,
+  .rv-info[aria-expanded=true] {
+    transform: none !important;
+  }
+}
+
+/* 641-900: Skills groups collapse unless filtering or searching (as on phones) */
+@media (min-width:641px) and (max-width:900px) {
+  .hg-tg {
+    all: unset;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    cursor: pointer;
+  }
+  .hg-tg .hg-n {
+    font: 500 12px/1 "DM Mono",monospace;
+    color: var(--ink-muted);
+    white-space: nowrap;
+  }
+  .hg-tg::after {
+    content: "";
+    flex: none;
+    width: 9px;
+    height: 9px;
+    border-right: 1.8px solid var(--forest);
+    border-bottom: 1.8px solid var(--forest);
+    transform: rotate(45deg) translate(-2px,-2px);
+    transition: transform .2s;
+    margin-right: 4px;
+  }
+  .hgroup.sk-open .hg-tg::after {
+    transform: rotate(225deg) translate(-2px,-2px);
+  }
+  .hg-tg:focus-visible {
+    outline: 2px solid var(--forest);
+    outline-offset: 4px;
+    border-radius: 6px;
+  }
+  .hgroup:not(.sk-open) .hb-scale,
+  .hgroup:not(.sk-open) .hrows,
+  .hgroup:not(.sk-open) .hsub {
+    display: none !important;
+  }
+  .hgroup:not(.sk-open) {
+    padding-bottom: 18px !important;
+  }
+}
+
+/* Card sliders: one swipe row with position dots.
+   Homepage case studies from 760px down, Work Sample cards from 900px down. */
+@media (min-width:641px) and (max-width:760px) {
+  .ocases {
+    --gut: 16px;
+  }
+}
+
+@media (min-width:761px) and (max-width:900px) {
+  .ocases {
+    --gut: 48px;
+  }
+}
+
+@media (min-width:641px) and (max-width:760px) {
+  #analytics .ocases,
+  #operations .ocases {
+    display: flex !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 14px !important;
+    margin: 0 calc(-1 * var(--gut)) !important;
+    padding: 4px var(--gut) 6px !important;
+    scroll-padding-left: var(--gut);
+    scrollbar-width: none;
+    align-items: stretch;
+  }
+  #analytics .ocases>*,
+  #operations .ocases>* {
+    flex: 0 0 min(84%,440px) !important;
+    max-width: min(84%,440px);
+    scroll-snap-align: start;
+    margin: 0 !important;
+  }
+}
+
+@media (min-width:641px) and (max-width:900px) {
+  #samples .ocases {
+    display: flex !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 14px !important;
+    margin: 0 calc(-1 * var(--gut)) !important;
+    padding: 4px var(--gut) 6px !important;
+    scroll-padding-left: var(--gut);
+    scrollbar-width: none;
+    align-items: stretch;
+  }
+  #samples .ocases>* {
+    flex: 0 0 min(84%,440px) !important;
+    max-width: min(84%,440px);
+    scroll-snap-align: start;
+    margin: 0 !important;
+  }
+}
+
+@media (min-width:641px) and (max-width:900px) {
+  .ocases::-webkit-scrollbar {
+    display: none;
+  }
+  .oc-dots {
+    justify-content: center;
+    gap: 6px;
+    margin: 14px 0 4px;
+  }
+  .oc-dots button {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 99px;
+    background: color-mix(in srgb,var(--forest) 25%,transparent);
+    transition: width .2s,background-color .2s;
+    cursor: pointer;
+  }
+  .oc-dots button.on {
+    width: 22px;
+    background: var(--forest);
+  }
+  #operations .oc-dots button {
+    background: #ffffff40;
+  }
+  #operations .oc-dots button.on {
+    background: var(--deep-up,#9cc3a5);
+  }
+  #samples .oc-dots {
+    display: flex;
+  }
+}
+
+@media (min-width:641px) and (max-width:760px) {
+  #analytics .oc-dots,
+  #operations .oc-dots {
+    display: flex;
+  }
+}
+
+/* 641-760: maturity phases become a row-by-row list */
+@media (min-width:641px) and (max-width:760px) {
+  .phases {
+    grid-template-columns: 1fr !important;
+    text-align: left;
+    margin-top: 18px;
+    gap: 0;
+  }
+  .phases li {
+    grid-template-columns: 90px minmax(0,1fr);
+    grid-template-areas: "n t" "n q";
+    justify-items: start;
+    column-gap: 8px;
+    row-gap: 1px;
+    padding: 12px 0 !important;
+    border-top: 1px solid var(--line,#e4dccb);
+  }
+  .phases li:last-child {
+    border-bottom: 1px solid var(--line,#e4dccb);
+  }
+  .phases .mono {
+    grid-area: n;
+    font-size: 11px !important;
+    padding-top: 5px;
+  }
+  .phases b {
+    grid-area: t;
+    font-size: 19px !important;
+  }
+  .phases .q,
+  .phases li:nth-child(2) .q,
+  .phases li:nth-child(4) .q {
+    grid-area: q;
+    display: block !important;
+    font-size: 15px !important;
+  }
+}
+
+/* 641-760: leadership practices are tap-to-open */
+@media (min-width:641px) and (max-width:760px) {
+  .lx2 {
+    gap: 0 !important;
+  }
+  .lx2 .lxc {
+    grid-template-columns: 36px minmax(0,1fr) !important;
+    gap: 12px !important;
+    padding: 12px 0;
+    border-top: 1px solid color-mix(in srgb,var(--tint-peach-ink,#8e4b50) 22%,transparent);
+  }
+  .lx2 .lxc:last-child {
+    border-bottom: 1px solid color-mix(in srgb,var(--tint-peach-ink,#8e4b50) 22%,transparent);
+  }
+  .lxi {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 10px !important;
+  }
+  .lxi svg {
+    width: 19px;
+    height: 19px;
+  }
+  .lx-t {
+    all: unset;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 36px;
+    cursor: pointer;
+    font-family: var(--hfont);
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--ink);
+  }
+  .lx-t::after {
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-right: 1.8px solid var(--rose-deep);
+    border-bottom: 1.8px solid var(--rose-deep);
+    transform: rotate(45deg) translate(-2px,-2px);
+    transition: transform .2s;
+    margin-right: 4px;
+  }
+  .lxc.open .lx-t::after {
+    transform: rotate(225deg) translate(-2px,-2px);
+  }
+  .lx-t:focus-visible {
+    outline: 2px solid var(--forest);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  .lx2 .lxc b.lx-b {
+    display: none;
+  }
+  .lx2 .lxc p {
+    display: none;
+    margin-top: 4px !important;
+  }
+  .lx2 .lxc.open p {
+    display: block;
+  }
+}
+
+/* 641-760: hero buttons use the short labels, three in a row */
+@media (min-width:641px) and (max-width:760px) {
+  .l-long {
+    display: none;
+  }
+  .l-short {
+    display: inline;
+  }
+  .intro .cta.rr {
+    display: grid !important;
+    grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+    gap: 10px !important;
+    width: 100%;
+    max-width: 480px;
+  }
+  .intro .cta.rr .btn {
+    justify-content: center;
+    width: 100%;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    gap: 6px;
+    white-space: nowrap;
+  }
+}
+
+/* AI hours popups: the text wraps inside the box (the big number above it doesn't wrap),
+   and while one is open the AI section sits above the next section so the box isn't covered. */
+.rv-pop {
+  white-space: normal;
+}
+
+/* 900px and below the popup spans the stat row; it opens upward, over the AI section's own
+   light background, since the dark Operations section starts right below the row. */
+@media (max-width:900px) {
+  #ai .rv .rv-pop {
+    top: auto !important;
+    bottom: calc(100% + 10px) !important;
+  }
+}
+
+#ai {
+  overflow: visible;
+  overflow-x: clip; /* the background glow only overflows sideways */
+}
+
+#ai:has(.rv-info[aria-expanded=true], .rv-info:hover, .rv-info:focus-visible) {
+  position: relative;
+  z-index: 3;
 }

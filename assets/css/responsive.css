@@ -1612,7 +1612,8 @@ dialog.wsd.wide {
   text-align: center;
 }
 
-@container (max-width:620px) {
+/* stacked slide layout on phones only; wider screens keep the 16:9 slide */
+@media (max-width:640px) {
   .wsd .sl {
     aspect-ratio: auto;
     font-size: 14px;
@@ -2224,7 +2225,8 @@ dialog.wsd.wide {
   color: var(--rose-ink);
 }
 
-@container (max-width:620px) {
+/* stacked slide layout on phones only; wider screens keep the 16:9 slide */
+@media (max-width:640px) {
   .wsd .sl-ins {
     padding: 1.4em 1em 4.2em;
   }
@@ -2362,7 +2364,8 @@ dialog.wsd.wide {
   margin-left: 1em;
 }
 
-@container (max-width:620px) {
+/* stacked slide layout on phones only; wider screens keep the 16:9 slide */
+@media (max-width:640px) {
   .wsd .ok-grid {
     grid-template-columns: 1fr;
   }

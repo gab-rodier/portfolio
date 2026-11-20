@@ -205,13 +205,7 @@ body {
 }
 
 @media (max-width:360px) {
-  .ki {
-    grid-template-columns: 1fr !important;
-  }
-  .kstat {
-    border-left: 0 !important;
-    padding: 8px 0 !important;
-  }
+  /* Key impact stays 2x2 on narrow phones too (e.g. 360px Android) */
   .nav .menu-btn {
     padding: 8px 12px;
   }
