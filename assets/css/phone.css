@@ -124,7 +124,7 @@
     gap: 6px;
     margin: 14px 0 4px;
   }
-  .oc-dots button {
+  .oc-pips button {
     width: 8px;
     height: 8px;
     padding: 0;
@@ -134,14 +134,14 @@
     transition: width .2s,background-color .2s;
     cursor: pointer;
   }
-  .oc-dots button.on {
+  .oc-pips button.on {
     width: 22px;
     background: var(--forest);
   }
-  #operations .oc-dots button {
+  #operations .oc-pips button {
     background: #ffffff40;
   }
-  #operations .oc-dots button.on {
+  #operations .oc-pips button.on {
     background: var(--deep-up,#9cc3a5);
   }
 }
@@ -741,13 +741,14 @@
 
 /* Card sliders: one swipe row with position dots.
    Homepage case studies from 760px down, Work Sample cards from 900px down. */
-@media (min-width:641px) and (max-width:760px) {
+/* the gutter matches .wrap, which widens to 48px at 760px */
+@media (min-width:641px) and (max-width:759px) {
   .ocases {
     --gut: 16px;
   }
 }
 
-@media (min-width:761px) and (max-width:900px) {
+@media (min-width:760px) and (max-width:900px) {
   .ocases {
     --gut: 48px;
   }
@@ -804,7 +805,7 @@
     gap: 6px;
     margin: 14px 0 4px;
   }
-  .oc-dots button {
+  .oc-pips button {
     width: 8px;
     height: 8px;
     padding: 0;
@@ -814,14 +815,14 @@
     transition: width .2s,background-color .2s;
     cursor: pointer;
   }
-  .oc-dots button.on {
+  .oc-pips button.on {
     width: 22px;
     background: var(--forest);
   }
-  #operations .oc-dots button {
+  #operations .oc-pips button {
     background: #ffffff40;
   }
-  #operations .oc-dots button.on {
+  #operations .oc-pips button.on {
     background: var(--deep-up,#9cc3a5);
   }
   #samples .oc-dots {
@@ -989,4 +990,376 @@
 #ai:has(.rv-info[aria-expanded=true], .rv-info:hover, .rv-info:focus-visible) {
   position: relative;
   z-index: 3;
+}
+
+/* ==== Second round of requested tweaks ==== */
+
+/* 901-960: the Deliverable CTA description slides out in a slightly smaller size so it fits */
+@media (min-width:901px) and (max-width:960px) {
+  .xc-m>span {
+    font-size: 13.5px;
+  }
+}
+
+/* Department KPI note spans the full text width, like the section copy above it */
+#operations .onote {
+  max-width: none;
+}
+
+/* Cycle of Data to UX, one-step view (640px and below): the step box is centered under the
+   ring at a fixed width (so it does not shift between steps), with its text still left-aligned */
+@media (max-width:640px) {
+  .rw2 .rf-side {
+    width: min(100%,312px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .rw2 .rf-side .rf-d {
+    max-width: none;
+  }
+}
+
+/* Maturity phases list (760px and below): the question sits in parentheses, in small type,
+   right after the phase name on the same row */
+@media (max-width:760px) {
+  .phases li {
+    grid-template-columns: 64px max-content minmax(0,1fr) !important;
+    grid-template-areas: "n t q" !important;
+    align-items: baseline !important;
+    column-gap: 8px !important;
+    row-gap: 0 !important;
+    padding: 9px 0 !important;
+  }
+  .phases .mono {
+    padding-top: 0 !important;
+  }
+  .phases .q,
+  .phases li:nth-child(2) .q,
+  .phases li:nth-child(4) .q {
+    grid-area: q;
+    display: block !important;
+    min-width: 0;
+    margin: 0 !important;
+    font-size: 13px !important;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+  .phases .q::before {
+    content: "(";
+  }
+  .phases .q::after {
+    content: ")";
+  }
+}
+
+@media (min-width:641px) and (max-width:760px) {
+  .phases li {
+    grid-template-columns: 90px max-content minmax(0,1fr) !important;
+    padding: 11px 0 !important;
+  }
+  .phases .q,
+  .phases li:nth-child(2) .q,
+  .phases li:nth-child(4) .q {
+    font-size: 14.5px !important;
+  }
+}
+
+@media (max-width:360px) {
+  .phases li {
+    grid-template-columns: 60px max-content minmax(0,1fr) !important;
+    column-gap: 6px !important;
+  }
+  .phases b {
+    font-size: 15px !important;
+  }
+  .phases .q,
+  .phases li:nth-child(2) .q,
+  .phases li:nth-child(4) .q {
+    font-size: 12px !important;
+  }
+}
+
+/* Space between the maturity list and the Analytics case card row (760px and below) */
+@media (max-width:760px) {
+  #analytics .ocases {
+    margin-top: 32px !important;
+  }
+}
+
+/* Work Sample decks keep the 16:9 slide on phones too; a hint suggests turning the phone */
+@media (max-width:640px) and (orientation:portrait) {
+  .wsd .deck::after {
+    content: "Turn your phone sideways or pinch to zoom for a closer look.";
+    display: block;
+    margin-top: 10px;
+    font-size: 12.5px;
+    line-height: 1.4;
+    color: var(--ink-muted);
+    text-align: center;
+  }
+}
+
+/* Card row arrows: previous / next on each side of the position dots, wherever the row
+   scrolls sideways (the dots row only shows at those widths) */
+.oc-dots {
+  align-items: center;
+  gap: 14px !important;
+}
+
+.oc-pips {
+  display: flex;
+  gap: 6px;
+}
+
+.oc-arr {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1.5px solid var(--forest);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--forest);
+  cursor: pointer;
+  transition: background-color var(--fast),color var(--fast),opacity var(--fast);
+}
+
+.oc-arr svg,
+.t1-arr svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.oc-arr:hover:not(:disabled) {
+  background: var(--forest);
+  color: var(--on-forest);
+}
+
+.oc-arr:focus-visible,
+.t1-arr:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.oc-arr:disabled,
+.t1-arr:disabled {
+  opacity: .35;
+  cursor: default;
+}
+
+#operations .oc-arr {
+  border-color: var(--deep-up,#9cc3a5);
+  color: var(--deep-up,#9cc3a5);
+}
+
+#operations .oc-arr:hover:not(:disabled) {
+  background: var(--deep-up,#9cc3a5);
+  color: var(--surface-deep);
+}
+
+/* Sector pills: small arrows right after "Select a sector", only while the pill row scrolls */
+.t1c .t1b-k {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.t1-arrs {
+  display: none;
+  gap: 6px;
+}
+
+.t1c.t1-scroll .t1-arrs {
+  display: inline-flex;
+}
+
+.t1-arr {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: background-color var(--fast),color var(--fast),opacity var(--fast);
+}
+
+.t1-arr svg {
+  width: 13px;
+  height: 13px;
+}
+
+.t1-arr:hover:not(:disabled) {
+  background: var(--deep-up);
+  border-color: var(--deep-up);
+  color: var(--surface-deep);
+}
+
+/* Smaller type on narrow screens, in two steps (900px and below, then 640px and below):
+   the Maturity and Scope tools, Toolkit Highlights tabs, and the Skills + Tools page
+   (the Sectors heading only steps at 640px, like the Cycle heading). IDs keep these ahead of the general phone type rules above. */
+@media (max-width:900px) {
+  #assess .tool-toggle,
+  #estimator .tool-toggle,
+  #assess #quiz-go {
+    font-size: 15px !important;
+  }
+  #assess #quiz-qs .q label {
+    font-size: 14.5px !important;
+  }
+  #assess #quiz-qs .cs-v {
+    font-size: 15px !important;
+  }
+  #assess #quiz-qs .cs-list li {
+    font-size: 14.5px !important;
+  }
+  #assess .result .mini {
+    font-size: 12px !important;
+  }
+  #assess #r-steps li {
+    font-size: 15px !important;
+  }
+  #assess #r-bott {
+    font-size: 14.5px !important;
+  }
+  #estimator #est-tasks .grp {
+    font-size: 12px !important;
+  }
+  #estimator #est-tasks .task span {
+    font-size: 15px !important;
+  }
+  #estimator #est-tasks .task small {
+    font-size: 12px !important;
+  }
+  #estimator .factors .f-label {
+    font-size: 14.5px !important;
+  }
+  #estimator .factors .chip {
+    font-size: 13.5px !important;
+  }
+  #estimator .tiers + p {
+    font-size: 14px !important;
+  }
+  #about .klist li {
+    font-size: 15px !important;
+  }
+  #skills .hb-fl {
+    font-size: 11.5px !important;
+  }
+  #skills .hchip {
+    font-size: 13.5px !important;
+  }
+  #skills .hb-search label {
+    font-size: 16px !important;
+  }
+  #skills .hb-search input {
+    font-size: 15px !important;
+  }
+  #skills .hgroup .h3 {
+    font-size: 24px !important;
+  }
+  #skills .hs-h {
+    font-size: 17px !important;
+  }
+  #skills .hr-n {
+    font-size: 14.5px !important;
+  }
+}
+
+@media (max-width:640px) {
+  #assess .tool-toggle,
+  #estimator .tool-toggle,
+  #assess #quiz-go {
+    font-size: 14px !important;
+  }
+  #assess #quiz-qs .q label {
+    font-size: 13.5px !important;
+  }
+  #assess #quiz-qs .cs-v {
+    font-size: 14px !important;
+  }
+  #assess #quiz-qs .cs-list li {
+    font-size: 13.5px !important;
+  }
+  #assess .result .mini {
+    font-size: 11.5px !important;
+  }
+  #assess #r-steps li {
+    font-size: 14px !important;
+  }
+  #assess #r-bott {
+    font-size: 13.5px !important;
+  }
+  #estimator #est-tasks .grp {
+    font-size: 11.5px !important;
+  }
+  #estimator #est-tasks .task span {
+    font-size: 14px !important;
+  }
+  #estimator #est-tasks .task small {
+    font-size: 11.5px !important;
+  }
+  #estimator .factors .f-label {
+    font-size: 13.5px !important;
+  }
+  #estimator .factors .chip {
+    font-size: 13px !important;
+  }
+  #estimator .tiers + p {
+    font-size: 13px !important;
+  }
+  #about .klist li {
+    font-size: 14px !important;
+  }
+  /* Sectors heading: same size as the Cycle of Data to UX heading on phones */
+  main #sec-h {
+    font-size: 20px !important;
+  }
+  #skills .hb-fl {
+    font-size: 11px !important;
+  }
+  #skills .hchip {
+    font-size: 13px !important;
+  }
+  #skills .hb-search label {
+    font-size: 15px !important;
+  }
+  #skills .hb-search input {
+    font-size: 14.5px !important;
+  }
+  #skills .hgroup .h3 {
+    font-size: 20px !important;
+  }
+  #skills .hs-h {
+    font-size: 16px !important;
+  }
+  #skills .hr-n {
+    font-size: 14px !important;
+  }
+}
+
+/* Footer Explore links: when they wrap, the next line starts under "Analytics", not under
+   the Explore label */
+.fx {
+  flex-wrap: nowrap !important;
+  align-items: baseline !important;
+}
+
+.fx-l {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 22px;
+  flex: 1;
+  min-width: 0;
 }
