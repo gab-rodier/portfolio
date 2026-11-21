@@ -59,6 +59,15 @@ add('main nav link', '', async p => { await p.click('.links a[href="#about"]'); 
 add('main nav logo', 'contact/', async p => { await p.click('header .brand'); });
 add('main nav Get in Touch btn', '', async p => { await p.click('.nav-cta .btn.primary'); });
 add('hamburger open + link + close', '', async p => { await p.click('.menu-btn'); await wait(200); await p.click('#takeover a[href="contact/"]'); await p.click('.menu-btn'); await wait(200); await p.click('#takeover .to-close'); }, 'phone');
+add('hamburger logo + Get in Touch button', 'contact/', async p => {
+  if (!(await p.$('#takeover .to-home'))) return;
+  await p.click('.menu-btn'); await wait(200); await p.click('#takeover .to-home');
+  await p.goto(BASE + 'contact/'); await p.click('.menu-btn'); await wait(200); await p.click('#takeover .to-btn');
+}, 'phone');
+add('main nav AI + Skills + Tools links', '', async p => {
+  if (!(await p.$('.links a[href="#ai"]'))) return;
+  await p.click('.links a[href="#ai"]'); await p.click('.links a[href="skills-tools/"]');
+});
 add('footer email me', '', async p => { await p.click('footer .cc-a.pri'); });
 add('footer linkedin', '', async p => { await p.click('footer .cc-a[href*=linkedin]'); });
 add('footer resume', '', async p => { await p.click('footer .cc-a[download]'); });
@@ -111,6 +120,21 @@ add('dashboard tabs', 'work-samples/', async p => { await p.click('[data-open="w
 add('quotes arrows + bar', '', async p => {
   await p.click('.qcar3 .qc-next'); await wait(700); await p.click('.qcar3 .qc-prev'); await wait(700);
   await p.locator('.qcar3 .qc-seg').last().click(); await wait(700);
+});
+// Card row arrows + dots (added with the layout PR; skipped on pages without them)
+add('case row arrows + dot', '', async p => {
+  if (!(await p.$('#analytics .oc-arr'))) return;
+  await p.locator('#analytics .oc-arr.next').scrollIntoViewIfNeeded();
+  await p.click('#analytics .oc-arr.next'); await wait(1200);
+  await p.click('#analytics .oc-arr.prev'); await wait(1200);
+  await p.click('#analytics .oc-pips button:nth-child(3)'); await wait(1200);
+  await p.click('#analytics .oc-arr.next'); await wait(1200); // disabled at the end: no push
+}, 'phone');
+add('work sample card arrows', 'work-samples/', async p => {
+  if (!(await p.$('#samples .oc-arr'))) return;
+  await p.setViewportSize({ width: 820, height: 1000 }); await wait(300);
+  await p.locator('#samples .oc-arr.next').scrollIntoViewIfNeeded();
+  await p.click('#samples .oc-arr.next'); await wait(1200);
 });
 add('quotes arrow key', '', async p => { await p.locator('.qcar3 .qc-tr').focus(); await p.keyboard.press('ArrowRight'); await wait(700); });
 add('deck arrows + dots + keys', 'work-samples/', async p => {

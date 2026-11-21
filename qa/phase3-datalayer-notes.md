@@ -53,7 +53,14 @@ The sheet's examples differ slightly from the live text in a few places. The pus
 - **Phone menu:**
   - The Menu button sends `hamburger_nav_open` plus `main_nav_click` (button, static).
   - The menu's links send `main_nav_click` (link, hamburger).
+  - The menu's Get in Touch button sends `main_nav_click` (button, hamburger).
+  - The menu's logo sends `main_nav_click` with click_text "logo icon" (icon, hamburger), like the header logo.
   - The close button sends `main_nav_click` (button, hamburger).
+- **Card row arrows and dots (approved, added with the layout PR):** the arrows and dots under the case study and Work Sample card rows, shown where those rows scroll sideways, send `content_slider_interaction`:
+  - action "shift arrow click" or "shift bar click"
+  - element_location "Analytics case studies", "Operations case studies" or "work sample cards"
+  - from_state / to_state are card positions, e.g. "1" to "2"; total_options is the card count
+  - A swipe on the row itself, or an arrow at the end of the row, sends nothing. The sector pill arrows only scroll the pills and aren't tracked; a pill click already is.
 - **Footer Copy:** `copy_link_click` only. It isn't navigation, so it has no `footer_nav_click`.
 - **CTA locations:**
   - Footer buttons count as footer navigation.

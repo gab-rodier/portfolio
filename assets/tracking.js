@@ -265,7 +265,12 @@
         element_type: brand ? 'icon' : a.classList.contains('btn') ? 'button' : 'link', element_location: 'static'
       });
     } else if (a.closest('#takeover')) {
-      push('main_nav_click', { click_text: text, click_url: clickUrl, element_type: 'link', element_location: 'hamburger' });
+      // The menu's logo goes home (like the footer logo); Get in Touch is styled as a button.
+      var menuLogo = a.classList.contains('to-home');
+      push('main_nav_click', {
+        click_text: menuLogo ? 'logo icon' : text, click_url: clickUrl,
+        element_type: menuLogo ? 'icon' : a.classList.contains('to-btn') ? 'button' : 'link', element_location: 'hamburger'
+      });
     } else if (a.closest('footer')) {
       var logo = a.classList.contains('fbrand');
       push('footer_nav_click', {
@@ -325,6 +330,36 @@
     };
     if (delay) setTimeout(check, delay);
     else after(e, check);
+  }
+
+  /* ---------- card rows that scroll sideways on narrow screens ---------- */
+  // The arrows and dots under the case study and work sample card rows. The active dot is
+  // the position: { state: "2", index: 2, total: "3" }.
+  function rowState(nav) {
+    var pips = nav ? nav.querySelectorAll('.oc-pips button') : [];
+    var on = Array.prototype.findIndex.call(pips, function (b) { return b.classList.contains('on'); });
+    return on < 0 ? null : { state: String(on + 1), index: on + 1, total: String(pips.length) };
+  }
+  function rowName(nav) {
+    var s = nav.closest('#samples, #operations, #analytics');
+    return !s ? undefined : s.id === 'samples' ? 'work sample cards' : s.id === 'operations' ? 'Operations case studies' : 'Analytics case studies';
+  }
+  // The row scrolls smoothly, so read the new position once it has settled.
+  function trackRow(el, action, direction) {
+    var nav = el.closest('.oc-dots'), before = rowState(nav);
+    if (!before) return;
+    setTimeout(function () {
+      var now = rowState(nav);
+      if (!now || now.state === before.state) return;
+      push('content_slider_interaction', {
+        action: action,
+        click_direction: direction || (now.index > before.index ? 'forward' : 'backward'),
+        element_location: rowName(nav),
+        from_state: before.state,
+        to_state: now.state,
+        total_options: now.total
+      });
+    }, 900);
   }
 
   /* ---------- tools (maturity + scoping) ---------- */
@@ -460,6 +495,8 @@
       return trackSlide(sliderRoot(el), e.isTrusted ? 'shift arrow click' : 'arrow key', back ? 'backward' : 'forward', e);
     }
     if ((el = t.closest('.qc-seg, .qc-dot, .wdot'))) return trackSlide(sliderRoot(el), 'shift bar click', null, e);
+    if ((el = t.closest('.oc-arr'))) return trackRow(el, 'shift arrow click', el.classList.contains('prev') ? 'backward' : 'forward');
+    if ((el = t.closest('.oc-pips button'))) return trackRow(el, 'shift bar click');
 
     // Expandable content
     if ((el = t.closest('.rf-hit, .rw2 .rl button, .rf-prev, .rf-next'))) {
