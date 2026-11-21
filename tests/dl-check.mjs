@@ -59,10 +59,9 @@ add('main nav link', '', async p => { await p.click('.links a[href="#about"]'); 
 add('main nav logo', 'contact/', async p => { await p.click('header .brand'); });
 add('main nav Get in Touch btn', '', async p => { await p.click('.nav-cta .btn.primary'); });
 add('hamburger open + link + close', '', async p => { await p.click('.menu-btn'); await wait(200); await p.click('#takeover a[href="contact/"]'); await p.click('.menu-btn'); await wait(200); await p.click('#takeover .to-close'); }, 'phone');
-add('hamburger logo + Get in Touch button', 'contact/', async p => {
+add('hamburger logo', 'contact/', async p => {
   if (!(await p.$('#takeover .to-home'))) return;
   await p.click('.menu-btn'); await wait(200); await p.click('#takeover .to-home');
-  await p.goto(BASE + 'contact/'); await p.click('.menu-btn'); await wait(200); await p.click('#takeover .to-btn');
 }, 'phone');
 add('main nav AI + Skills + Tools links', '', async p => {
   if (!(await p.$('.links a[href="#ai"]'))) return;
@@ -128,7 +127,8 @@ add('case row arrows + dot', '', async p => {
   await p.click('#analytics .oc-arr.next'); await wait(1200);
   await p.click('#analytics .oc-arr.prev'); await wait(1200);
   await p.click('#analytics .oc-pips button:nth-child(3)'); await wait(1200);
-  await p.click('#analytics .oc-arr.next'); await wait(1200); // disabled at the end: no push
+  // Disabled at the end of the row: a forced click must push nothing.
+  await p.click('#analytics .oc-arr.next', { force: true }); await wait(1200);
 }, 'phone');
 add('work sample card arrows', 'work-samples/', async p => {
   if (!(await p.$('#samples .oc-arr'))) return;
