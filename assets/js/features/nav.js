@@ -42,7 +42,7 @@ function initMenu() {
 }
 
 function initScrollSpy() {
-  const sections = ['analytics', 'operations', 'leadership', 'about'].map(id => document.getElementById(id));
+  const sections = ['analytics', 'ai', 'operations', 'leadership', 'about'].map(id => document.getElementById(id));
   const links = $$('.links a');
   const update = () => {
     if (document.body.dataset.page !== 'home') return;
