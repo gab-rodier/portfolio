@@ -1,12 +1,13 @@
 {
   "name": "portfolio",
   "private": true,
-  "description": "Dev tooling only (screenshots, diffs). The site itself has no build step.",
+  "description": "Dev tooling only (screenshots, diffs, dataLayer checks). The site itself has no build step.",
   "scripts": {
     "serve": "node tests/serve.mjs 4173",
     "shots": "node tests/shots.mjs",
     "diff": "node tests/diff.mjs",
-    "styles": "node tests/styles.mjs"
+    "styles": "node tests/styles.mjs",
+    "dl": "node tests/dl-check.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.65.1",
