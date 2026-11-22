@@ -1612,57 +1612,6 @@ dialog.wsd.wide {
   text-align: center;
 }
 
-@container (max-width:620px) {
-  .wsd .sl {
-    aspect-ratio: auto;
-    font-size: 14px;
-    min-height: 0;
-  }
-  .wsd .sl-body,
-  .wsd .sl-body.split,
-  .wsd .sl-body.two {
-    flex-direction: column;
-    padding: 1.2em 1em 3em;
-    gap: 1.2em;
-  }
-  .wsd .sl-panel {
-    flex: none;
-    margin: 0 -1em;
-  }
-  .wsd .sl-tbl {
-    display: block;
-    overflow-x: auto;
-    font-size: .9em;
-  }
-  .wsd .ost-g {
-    grid-template-columns: 1fr;
-  }
-  .wsd .og-v.span3 {
-    grid-column: auto;
-  }
-  .wsd .sl-cover {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .wsd .cv-main {
-    padding: 4.5em 1.2em 1.5em;
-  }
-  .wsd .cv-art {
-    min-height: 9em;
-  }
-  .wsd .sl-cover .sl-foot {
-    width: auto;
-    position: static;
-  }
-  .wsd .sl-div {
-    min-height: 16em;
-  }
-  .wsd .cv-tri {
-    border-top-width: 6em;
-    border-right-width: 6em;
-  }
-}
-
 @media (max-width:640px) {
   .wsd .deck-stage {
     display: block;
@@ -2224,34 +2173,6 @@ dialog.wsd.wide {
   color: var(--rose-ink);
 }
 
-@container (max-width:620px) {
-  .wsd .sl-ins {
-    padding: 1.4em 1em 4.2em;
-  }
-  .wsd .ins-t {
-    font-size: 1.45em;
-  }
-  .wsd .ins-two,
-  .wsd .ins-two.eq,
-  .wsd .st-wrap {
-    grid-template-columns: 1fr;
-    gap: 1.2em;
-  }
-  .wsd .sb-r {
-    grid-template-columns: 1fr;
-    gap: .2em;
-  }
-  .wsd .sb-l {
-    text-align: left;
-  }
-  .wsd .st-row {
-    flex-wrap: wrap;
-  }
-  .wsd .ax-t.sm {
-    font-size: .78em;
-  }
-}
-
 .wsd .ok-grid {
   display: grid;
   grid-template-columns: repeat(3,minmax(0,1fr));
@@ -2360,15 +2281,6 @@ dialog.wsd.wide {
   width: 1.6em;
   border-top: 2px dashed var(--rose-ink);
   margin-left: 1em;
-}
-
-@container (max-width:620px) {
-  .wsd .ok-grid {
-    grid-template-columns: 1fr;
-  }
-  .wsd .ok-bars {
-    height: 7em;
-  }
 }
 
 .wsd .tl {

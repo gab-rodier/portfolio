@@ -1178,7 +1178,8 @@ body {
   opacity: 0;
 }
 
-@media (max-width:760px) {
+/* one quote per scroll from 900px down */
+@media (max-width:900px) {
   .qc-tr,
   .qc-peek .qc-tr {
     grid-auto-columns: 86%;
@@ -1769,6 +1770,48 @@ body {
 .nsel2 .bk2.on .bk2-sp {
   opacity: 0;
   pointer-events: none;
+}
+
+/* Open/close choreography: the book's width animates over .45s, so neither face may show
+   its contents while the width is in between. Opening: spine text drops out at once, the
+   plain spine widens, then the cover fades in over it. Closing: the cover drops out at
+   once, the spine color returns as it narrows, then the spine text fades back in. */
+.nsel2 .bk2-c {
+  transition: opacity .1s, visibility 0s .1s;
+}
+
+.nsel2 .bk2.on .bk2-c {
+  transition: opacity .25s .3s, visibility 0s .3s;
+}
+
+.nsel2 .bk2-sp {
+  transition: opacity .12s;
+}
+
+.nsel2 .bk2.on .bk2-sp {
+  transition: opacity .25s .3s;
+}
+
+.nsel2 .bk2-sp > span,
+.nsel2 .bk2-sp::before {
+  transition: opacity .2s .35s;
+}
+
+.nsel2 .bk2.on .bk2-sp > span,
+.nsel2 .bk2.on .bk2-sp::before {
+  opacity: 0;
+  transition: opacity .05s;
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .nsel2 .bk2-c,
+  .nsel2 .bk2.on .bk2-c,
+  .nsel2 .bk2-sp,
+  .nsel2 .bk2.on .bk2-sp,
+  .nsel2 .bk2-sp > span,
+  .nsel2 .bk2-sp::before {
+    transition: none;
+  }
 }
 
 .bkh2 {

@@ -1,6 +1,7 @@
 // Smaller homepage widgets: ground reveal, AI-hours info popups, deliverable CTA hover,
-// sector pills, leadership tap-to-open (phones), and the scroll dots under case card rows.
-import { $, $$, ensureId } from '../lib/dom.js';
+// sector pills (with scroll arrows on narrow screens), leadership tap-to-open (phones), and the
+// arrows + position dots under the sideways card rows.
+import { $, $$, ensureId, reducedMotion } from '../lib/dom.js';
 
 /* Maturity "ground" illustrations grow in when scrolled into view. */
 export function initGroundReveal() {
@@ -90,28 +91,86 @@ export function initLeadership() {
   }));
 }
 
-/* Case card rows scroll sideways on phones: decorative dots show the position. */
+const ARROW = {
+  prev: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M15 10H5M9 6l-4 4 4 4"/></svg>',
+  next: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M11 6l4 4-4 4"/></svg>',
+};
+
+function arrowButton(cls, dir, label) {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = `${cls} ${dir}`;
+  b.setAttribute('aria-label', label);
+  b.innerHTML = ARROW[dir];
+  return b;
+}
+
+/* Card rows scroll sideways on narrow screens (case studies at 760px and below, Work Sample
+   cards at 900px and below). Under each row: a previous arrow, position dots, a next arrow. */
 export function initCaseRowDots() {
   $$('.ocases').forEach(row => {
     const items = Array.from(row.children);
     if (items.length < 2) return;
-    const dots = document.createElement('div');
-    dots.className = 'oc-dots';
+    // The row's side gutter (16px on phones, 48px on tablets) is its scroll padding.
+    const gut = () => parseFloat(getComputedStyle(row).scrollPaddingLeft) || 16;
+    const noun = row.closest('#samples') ? 'work sample' : 'case study';
+    const goTo = i => row.scrollTo({ left: items[i].offsetLeft - row.offsetLeft - gut(), behavior: reducedMotion() ? 'auto' : 'smooth' });
+    const nav = document.createElement('div');
+    nav.className = 'oc-dots';
+    const prev = arrowButton('oc-arr', 'prev', `Previous ${noun}`);
+    const next = arrowButton('oc-arr', 'next', `Next ${noun}`);
+    const dots = document.createElement('span');
+    dots.className = 'oc-pips';
     dots.setAttribute('aria-hidden', 'true');
-    items.forEach(card => {
+    items.forEach((card, i) => {
       const b = document.createElement('button');
       b.type = 'button';
       b.tabIndex = -1;
-      b.addEventListener('click', () => row.scrollTo({ left: card.offsetLeft - row.offsetLeft - 16, behavior: 'smooth' }));
+      b.addEventListener('click', () => goTo(i));
       dots.appendChild(b);
     });
-    row.parentNode.insertBefore(dots, row.nextSibling);
+    nav.append(prev, dots, next);
+    row.parentNode.insertBefore(nav, row.nextSibling);
+    let k = 0;
+    prev.addEventListener('click', () => goTo(Math.max(0, k - 1)));
+    next.addEventListener('click', () => goTo(Math.min(items.length - 1, k + 1)));
     const update = () => {
       const x = row.scrollLeft;
-      let k = 0, best = 1e9;
-      items.forEach((c, i) => { const v = Math.abs(c.offsetLeft - row.offsetLeft - 16 - x); if (v < best) { best = v; k = i; } });
+      let best = 1e9;
+      const g = gut();
+      items.forEach((c, i) => { const v = Math.abs(c.offsetLeft - row.offsetLeft - g - x); if (v < best) { best = v; k = i; } });
       if (x >= row.scrollWidth - row.clientWidth - 4) k = items.length - 1;
       Array.from(dots.children).forEach((b, i) => b.classList.toggle('on', i === k));
+      prev.disabled = k === 0;
+      next.disabled = k === items.length - 1;
+    };
+    let raf;
+    row.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(update); });
+    addEventListener('resize', update);
+    update();
+  });
+}
+
+/* Sector pills: when they become one sideways-scrolling row, small arrows next to
+   "Select a sector" scroll it. The arrows only show while the row actually overflows. */
+export function initSectorArrows() {
+  $$('.t1c').forEach(box => {
+    const row = $('.t1-tabs', box), label = $('.t1b-k', box);
+    if (!row || !label) return;
+    const wrap = document.createElement('span');
+    wrap.className = 't1-arrs';
+    const prev = arrowButton('t1-arr', 'prev', 'Scroll sectors left');
+    const next = arrowButton('t1-arr', 'next', 'Scroll sectors right');
+    wrap.append(prev, next);
+    label.appendChild(wrap);
+    const step = dir => row.scrollBy({ left: dir * row.clientWidth * .7, behavior: reducedMotion() ? 'auto' : 'smooth' });
+    prev.addEventListener('click', () => step(-1));
+    next.addEventListener('click', () => step(1));
+    const update = () => {
+      const max = row.scrollWidth - row.clientWidth;
+      box.classList.toggle('t1-scroll', max > 2);
+      prev.disabled = row.scrollLeft <= 2;
+      next.disabled = row.scrollLeft >= max - 2;
     };
     let raf;
     row.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(update); });

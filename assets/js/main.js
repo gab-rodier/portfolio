@@ -13,7 +13,7 @@ import { initDecks } from './features/deck.js';
 import { initTabs, initTabKeys } from './features/tabs.js';
 import { initCopyEmail, initContactForm } from './features/contact.js';
 import { initSkills } from './features/skills.js';
-import { initGroundReveal, initHoursInfo, initDeliverableCtas, initSectorPills, initLeadership, initCaseRowDots } from './features/home-widgets.js';
+import { initGroundReveal, initHoursInfo, initDeliverableCtas, initSectorPills, initLeadership, initCaseRowDots, initSectorArrows } from './features/home-widgets.js';
 import { initCycle, initCycleList } from './features/cycle.js';
 import { initQuotes } from './features/quotes.js';
 import { initBookshelf, initCoverFit } from './features/bookshelf.js';
@@ -43,6 +43,7 @@ if (!legacyRedirect()) {
   run('bookshelf', initBookshelf);
   run('cover fit', initCoverFit);
   run('case row dots', initCaseRowDots);
+  run('sector arrows', initSectorArrows);
   run('leadership', initLeadership);
   run('tab keys', initTabKeys);
 }

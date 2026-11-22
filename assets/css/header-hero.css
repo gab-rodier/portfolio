@@ -161,7 +161,8 @@ body::before {
 .links a {
   position: relative;
   display: inline-grid;
-  padding: 8px 12px;
+  padding: 8px 9px;
+  white-space: nowrap;
   border-radius: var(--r-pill);
   font-weight: 500;
   font-size: 16px;
@@ -180,8 +181,8 @@ body::before {
 .links a::after {
   content: "";
   position: absolute;
-  left: 12px;
-  right: 12px;
+  left: 9px;
+  right: 9px;
   bottom: 4px;
   height: 2px;
   background: var(--rose);
@@ -257,7 +258,8 @@ body::before {
   border-radius: 2px;
 }
 
-@media (max-width:1180px) {
+/* the name hides until the full link row (with AI and Skills + Tools) fits beside it */
+@media (max-width:1220px) {
   .bn {
     display: none;
   }
@@ -386,6 +388,36 @@ body::before {
 
 .takeover a:hover {
   color: var(--rose);
+}
+
+/* menu logo: back to the homepage hero, like the footer logo */
+.takeover .to-home {
+  display: inline-flex;
+  border-radius: 8px;
+}
+
+/* Get in Touch: an outlined button (like the header's ghost buttons), set apart from the links */
+.takeover .to-cta {
+  margin-top: 20px;
+}
+
+.takeover .to-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 12px 26px;
+  border: 1.5px solid currentColor;
+  border-radius: var(--r-pill);
+  font-size: clamp(16px,4.2vw,20px);
+  letter-spacing: .06em;
+  transition: background-color var(--fast),color var(--fast),border-color var(--fast);
+}
+
+.takeover .to-btn:hover,
+.takeover .to-btn:focus-visible {
+  background: var(--on-forest);
+  border-color: var(--on-forest);
+  color: var(--forest);
 }
 
 /* ==== hero ==== */
