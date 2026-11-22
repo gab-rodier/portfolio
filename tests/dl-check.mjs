@@ -3,6 +3,8 @@
 // GTM is blocked; link navigation is cancelled after tracking sees the click.
 import { chromium, devices } from '@playwright/test';
 import { startServer } from './serve.mjs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const BASE = 'http://localhost:4174/portfolio/';
 const only = process.argv[2];
@@ -50,8 +52,12 @@ add('scroll + section_view', '', async p => {
   for (let y = 0; y <= h; y += 300) { await p.evaluate(y => window.scrollTo(0, y), y); await wait(1300); }
 });
 add('section flyby (<1s) no view', '', async p => {
-  await p.evaluate(() => window.scrollTo(0, document.getElementById('leadership').offsetTop)); await wait(300);
-  await p.evaluate(() => window.scrollTo(0, 0)); await wait(1500);
+  // Scroll there and back inside the page, so test round trips can't stretch the 300ms.
+  await p.evaluate(() => new Promise(done => {
+    window.scrollTo(0, document.getElementById('leadership').offsetTop);
+    setTimeout(() => { window.scrollTo(0, 0); done(); }, 300);
+  }));
+  await wait(1500);
 });
 
 // ---------- nav + footer + CTAs ----------
@@ -211,42 +217,56 @@ add('form network error', 'contact/', async p => {
 });
 
 // ---------- run ----------
-const server = await startServer(4174);
-const browser = await chromium.launch();
-const CTX = {
-  desktop: { viewport: { width: 1440, height: 900 } },
-  phone: { ...devices['iPhone 13'] },
-};
-const out = [];
-try {
-  for (const s of S) {
-    if (only && !s.name.includes(only)) continue;
-    const ctx = await browser.newContext(CTX[s.ctx]);
-    await ctx.route(/googletagmanager\.com/, r => r.abort());
-    await ctx.addInitScript(RECORDER);
-    const page = await ctx.newPage();
-    const errors = [], logs = [];
-    page.on('pageerror', e => errors.push(e.message));
-    page.on('console', m => { if (m.text().startsWith('[dataLayer]')) logs.push(m.text()); });
-    let pushes = [];
-    try {
-      await page.goto(BASE + s.path, { waitUntil: 'load' });
-      await wait(400);
-      await s.fn(page);
-      await wait(150);
-      pushes = await page.evaluate(() => window.__pushes);
-    } catch (e) {
-      errors.push('SCENARIO FAILED: ' + e.message.split('\n')[0]);
-      pushes = await page.evaluate(() => window.__pushes).catch(() => []);
+// Runs every scenario (or those whose name includes `filter`) and returns
+// [{ name, ctx, pushes, errors, logs }]. tests/dl-qa.mjs uses this for the formal QA file.
+export const SCENARIOS = S;
+export async function runScenarios(filter) {
+  const results = [];
+  const server = await startServer(4174);
+  const browser = await chromium.launch();
+  const CTX = {
+    desktop: { viewport: { width: 1440, height: 900 } },
+    phone: { ...devices['iPhone 13'] },
+  };
+  try {
+    for (const s of S) {
+      if (filter && !s.name.includes(filter)) continue;
+      const ctx = await browser.newContext(CTX[s.ctx]);
+      await ctx.route(/googletagmanager\.com/, r => r.abort());
+      await ctx.addInitScript(RECORDER);
+      const page = await ctx.newPage();
+      const errors = [], logs = [];
+      page.on('pageerror', e => errors.push(e.message));
+      page.on('console', m => { if (m.text().startsWith('[dataLayer]')) logs.push(m.text()); });
+      let pushes = [];
+      try {
+        await page.goto(BASE + s.path, { waitUntil: 'load' });
+        await wait(400);
+        await s.fn(page);
+        await wait(150);
+        pushes = await page.evaluate(() => window.__pushes);
+      } catch (e) {
+        errors.push('SCENARIO FAILED: ' + e.message.split('\n')[0]);
+        pushes = await page.evaluate(() => window.__pushes).catch(() => []);
+      }
+      results.push({ name: s.name, ctx: s.ctx, pushes, errors, logs });
+      await ctx.close();
     }
-    out.push(`\n### ${s.name} (${s.ctx})`);
-    pushes.forEach(o => out.push(JSON.stringify(o)));
-    if (logs.length) out.push(`(console: ${logs.length} [dataLayer] lines)`);
-    if (errors.length) out.push('ERRORS: ' + errors.join(' | '));
-    await ctx.close();
+  } finally {
+    await browser.close();
+    server.close();
   }
-} finally {
-  await browser.close();
-  server.close();
+  return results;
 }
-console.log(out.join('\n'));
+
+// Printed when run directly (npm run dl); importing this file only loads the scenarios.
+if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
+  const out = [];
+  for (const r of await runScenarios(only)) {
+    out.push(`\n### ${r.name} (${r.ctx})`);
+    r.pushes.forEach(o => out.push(JSON.stringify(o)));
+    if (r.logs.length) out.push(`(console: ${r.logs.length} [dataLayer] lines)`);
+    if (r.errors.length) out.push('ERRORS: ' + r.errors.join(' | '));
+  }
+  console.log(out.join('\n'));
+}
