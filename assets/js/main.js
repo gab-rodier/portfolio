@@ -2,7 +2,7 @@
 // HTML is parsed. Each feature checks for its own elements and does nothing when they are
 // missing, so one file serves all four pages. The order below matches the original script.
 import { run } from './lib/dom.js';
-import { legacyRedirect, initNav } from './features/nav.js';
+import { legacyRedirect, initNav, landOnSection } from './features/nav.js';
 import { initMaturity } from './features/maturity.js';
 import { initEstimator } from './features/estimator.js';
 import { initTools } from './features/tools.js';
@@ -46,4 +46,6 @@ if (!legacyRedirect()) {
   run('sector arrows', initSectorArrows);
   run('leadership', initLeadership);
   run('tab keys', initTabKeys);
+  // Last, so every widget above the section has its final height.
+  run('land on section', landOnSection);
 }

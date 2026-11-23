@@ -438,14 +438,10 @@
     // Links (nav, footer, CTAs, downloads, email, external, case/sample openers)
     if ((el = t.closest('a[href]'))) return onLink(el);
 
-    // Header + phone menu buttons
-    if ((el = t.closest('.menu-btn'))) {
-      push('hamburger_nav_open');
-      return push('main_nav_click', { click_text: label(el), element_type: 'button', element_location: 'static' });
-    }
-    if ((el = t.closest('#takeover .to-close'))) {
-      return push('main_nav_click', { click_text: label(el), element_type: 'button', element_location: 'hamburger' });
-    }
+    // Phone menu: opening it sends hamburger_nav_open only; closing it sends nothing.
+    // (main_nav_click is for the menu's links, handled in onLink.)
+    if (t.closest('.menu-btn')) return push('hamburger_nav_open');
+    if (t.closest('#takeover .to-close')) return;
 
     // Footer copy + back to top
     if ((el = t.closest('#copy'))) {
