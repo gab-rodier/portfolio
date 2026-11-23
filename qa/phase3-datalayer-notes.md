@@ -51,11 +51,11 @@ The sheet's examples differ slightly from the live text in a few places. The pus
 - **Skills reset:** `filter_interaction` with `element_name` "Reset", `element_type` "reset button", and the counts after the reset.
 - **Skills search:** `element_name` is "Search Term" (from the parameter list). `secondary_filter_applied` joins Area and Level when both are set, e.g. "Area: Analytics, UX + CRO, Level: Expert".
 - **Phone menu:**
-  - The Menu button sends `hamburger_nav_open` plus `main_nav_click` (button, static).
+  - The Menu button sends `hamburger_nav_open` only.
   - The menu's links send `main_nav_click` (link, hamburger).
   - The menu's Get in Touch button sends `main_nav_click` (button, hamburger).
   - The menu's logo sends `main_nav_click` with click_text "logo icon" (icon, hamburger), like the header logo.
-  - The close button sends `main_nav_click` (button, hamburger).
+  - The close button sends nothing. (Changed 2026-11-22 at your request: the Menu and Close buttons used to also send `main_nav_click`.)
 - **Card row arrows and dots (approved, added with the layout PR):** the arrows and dots under the case study and Work Sample card rows, shown where those rows scroll sideways, send `content_slider_interaction`:
   - action "shift arrow click" or "shift bar click"
   - element_location "Analytics case studies", "Operations case studies" or "work sample cards"

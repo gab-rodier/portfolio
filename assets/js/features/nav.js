@@ -64,6 +64,33 @@ function initBackToTop() {
   btn.addEventListener('click', () => scrollTo({ top: 0, behavior: reducedMotion() ? 'auto' : 'smooth' }));
 }
 
+/* Arriving on the homepage from another page with a section link (../#ai, ../#operations, ...).
+   The browser's own jump to the section is a smooth scroll from the top, and on touch screens the
+   end of the tap that followed the link can cancel it, leaving the visitor on the hero. On phones the
+   widgets above a section also finish building after that jump, so it can stop short. Run last in
+   main.js: go straight to the section, then line it up again once images and fonts have loaded,
+   unless the visitor has started scrolling themselves. In-page links keep their smooth scroll. */
+export function landOnSection() {
+  if (document.body.dataset.page !== 'home') return;
+  const id = decodeURIComponent((location.hash || '').slice(1));
+  const target = id && document.getElementById(id);
+  if (!target || target.id === 'top') return;
+  let moved = false;
+  const stop = () => { moved = true; };
+  // Real scrolling only: a leftover tap can send a synthetic mousedown, which must not count.
+  ['wheel', 'touchmove', 'keydown'].forEach(t => addEventListener(t, stop, { once: true, passive: true }));
+  const land = () => {
+    if (moved) return;
+    // The section should sit just under the sticky header (html scroll-padding-top).
+    const offBy = target.getBoundingClientRect().top - (parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0);
+    if (Math.abs(offBy) > 2) target.scrollIntoView({ behavior: 'instant', block: 'start' });
+  };
+  land();
+  if (document.readyState !== 'complete') addEventListener('load', land, { once: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(land);
+  setTimeout(land, 1500);
+}
+
 export function initNav() {
   initMenu();
   initScrollSpy();
