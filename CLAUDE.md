@@ -17,8 +17,9 @@ Live site: https://gab-rodier.github.io/portfolio/ (GitHub Pages, static, no bui
 - `assets/js/main.js` (ES module entry) imports `assets/js/features/*.js`; each feature checks for its own elements, so one entry serves all pages. No build step.
 - `assets/img/` (images, favicon.svg, apple-touch-icon.png)
 - Each page only includes the dialogs it opens: case studies (`cs-*`) on home, work samples (`ws-*`) on `work-samples/`.
-- `tests/` (not deployed): `shots.mjs` (screenshots of every page and state at 390/768/1024/1440), `diff.mjs` (pixel diff), `styles.mjs` (computed-style diff), `dl-check.mjs` (drives every tracked interaction and prints each dataLayer push). Run with Node; see `package.json`.
+- `tests/` (not deployed): `shots.mjs` (screenshots of every page and state at 390/768/1024/1440), `diff.mjs` (pixel diff), `styles.mjs` (computed-style diff), `dl-check.mjs` (drives every tracked interaction and prints each dataLayer push), `dl-qa.mjs` (runs the same scenarios, checks every push against the spec, and writes `qa/dataLayer-qa.md`), `gtm-check.mjs` (checks the GTM import file). Run with Node; see `package.json`.
 - `assets/tracking.js` is a classic (non-module) script loaded in `<head>` before the GTM snippet on every page, so `initialize_dataLayer` is pushed first. `qa/phase3-datalayer-notes.md` records how each event is interpreted.
+- `gtm-import/portfolio-container.json` is generated from the EVENTS list in `tracking.js` by `tests/tools/build-gtm.mjs`: when an event or parameter changes, rebuild it (`npm run gtm`), then run `npm run gtm:check` and `npm run qa`. `gtm-import/README.md` has the import steps, GA4 custom dimensions and Enhanced Measurement settings.
 - `Gabrielle-Rodier-Resume.pdf` sits at the root.
 - Old hash links (`#samples`, `#skills`, `#write`) on home redirect to the new pages, so keep that working.
 - Contact form posts to Formspree via fetch, with the envelope animation and a `_gotcha` spam trap.
